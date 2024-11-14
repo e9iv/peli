@@ -30,6 +30,17 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "purple",
+"res://assets/": "red",
+"res://interaction/": "blue",
+"res://scenes/": "green",
+"res://scripts/": "pink",
+"res://shaders/": "yellow"
+}
+
 [input]
 
 up={
