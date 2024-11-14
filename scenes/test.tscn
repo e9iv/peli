@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyol8vq3v3wt1"]
+
+[ext_resource type="Texture2D" uid="uid://b2k7jytp10dkg" path="res://assets/sprites/player.png" id="1_bo43x"]
+[ext_resource type="Script" path="res://scripts/test.gd" id="1_up7la"]
+[ext_resource type="PackedScene" uid="uid://dgy10sv1cs5i6" path="res://interaction/interaction-area/interaction_area.tscn" id="3_i72vl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jiy8b"]
+
+[node name="test" type="Node2D"]
+script = ExtResource("1_up7la")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_bo43x")
+flip_h = true
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_i72vl")]
+action_name = " talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_jiy8b")
