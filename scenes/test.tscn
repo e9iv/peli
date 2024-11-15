@@ -1,17 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyol8vq3v3wt1"]
+[gd_scene load_steps=9 format=3 uid="uid://dyol8vq3v3wt1"]
 
-[ext_resource type="Texture2D" uid="uid://b2k7jytp10dkg" path="res://assets/sprites/player.png" id="1_bo43x"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_up7la"]
+[ext_resource type="Texture2D" uid="uid://bo1ryxv74hsaf" path="res://assets/sprites/idle/basic_idle_01.png" id="2_hkk8i"]
+[ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/idle/basic_idle_02.png" id="3_f3ks5"]
 [ext_resource type="PackedScene" uid="uid://dgy10sv1cs5i6" path="res://interaction/interaction-area/interaction_area.tscn" id="3_i72vl"]
+[ext_resource type="FontFile" uid="uid://b6qd31q3ljoal" path="res://assets/fonts/monogram-extended-italic.ttf" id="4_rwc83"]
+[ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/idle/basic_idle_04.png" id="5_bihju"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1y81u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hkk8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f3ks5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bihju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jiy8b"]
 
 [node name="test" type="Node2D"]
 script = ExtResource("1_up7la")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_bo43x")
+sprite_frames = SubResource("SpriteFrames_1y81u")
+frame_progress = 0.190587
 flip_h = true
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_i72vl")]
@@ -19,3 +40,13 @@ action_name = " talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_jiy8b")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -33.0
+offset_top = -25.0
+offset_right = 39.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("4_rwc83")
+text = "Hello There!"

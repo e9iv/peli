@@ -1,19 +1,59 @@
 extends CharacterBody2D
 
 # Variables
-@export var speed : float = 50 # Movement speed
-@export var accel : float = 35
-@export var decel : float = 25
-@export var mouseSpd : float = 0.8
-@export var sprintspd : float = 85
+@export_group("Speed Variables")
+@export var speed: float = 50
+@export var sprintspd: float = 85
+@export_group("Dash Variables")
+@export var dash_speed: float = 150
+@export var dash_duration: float = 0.2
+@export var dash_cooldown: float = 1.0
+@export_group("Accel & Decel")
+@export var accel: float = 1000
+@export var decel: float = 1000
+@export_group("Other")
+@export var tilt_amount: float = 0.1
+
 # References
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 
-# _physics_process is called every physics frame (usually 60 FPS)
-func _physics_process(delta):
-	# Movement input
-	var direction = Vector2.ZERO  # Initialize a zero vector
-	var mouse_position = get_global_mouse_position()
+# Variables for dash and movement
+var dash_timer: float = 0.0
+var dash_cooldown_timer: float = 0.0
+var dash_direction: Vector2 = Vector2.ZERO
+var is_dashing: bool = false
+
+func _ready() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 1, 1)
+
+
+func _physics_process(delta: float) -> void:
+	# Handle dashing
+	if is_dashing:
+		velocity = dash_direction * dash_speed
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
+	else:
+		# Normal movement
+		handle_movement(delta)
+
+	# Cooldown logic
+	if dash_cooldown_timer > 0.0:
+		dash_cooldown_timer -= delta
+
+	# Apply velocity and move
+	move_and_slide()
+
+	# Update animations and tilt
+	handle_animation()
+	handle_tilt(delta)
+
+func handle_movement(delta: float) -> void:
+	var direction: Vector2 = Vector2.ZERO
+
+	# Get input for movement
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 	if Input.is_action_pressed("left"):
@@ -23,30 +63,38 @@ func _physics_process(delta):
 	if Input.is_action_pressed("up"):
 		direction.y -= 1
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		if sprite.animation != "run":
-			sprite.play("run")
-	else:
-		if sprite.animation != "idle":
-			sprite.play("idle")
-
-	# Normalize direction vector to prevent diagonal speed boost
+	# Normalize direction and calculate velocity
 	direction = direction.normalized()
-
 	if direction != Vector2.ZERO:
-# Accelerate towards the input direction
 		velocity = velocity.move_toward(direction * speed, accel * delta)
 	else:
-# Decelerate when no input is given
 		velocity = velocity.move_toward(Vector2.ZERO, decel * delta)
 
-	# Move the player using move_and_slide() (or move_and_collide in some cases)
-	velocity = direction * speed
-	move_and_slide()
+	# Check for dash input
+	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0.0:
+		start_dash(direction)
 
-	# Flip sprite based on movement direction
-	if velocity.x < 0:  # Moving left
+func start_dash(direction: Vector2) -> void:
+	if direction != Vector2.ZERO:
+		is_dashing = true
+		dash_timer = dash_duration
+		dash_cooldown_timer = dash_cooldown
+		dash_direction = direction
+
+func handle_animation() -> void:
+	if is_dashing:
+		pass
+	elif velocity.length() > 0.0:
+		sprite.play("run")
+	else:
+		sprite.play("idle")
+
+	# Flip sprite based on velocity direction
+	if velocity.x < 0:
 		sprite.flip_h = true
-	elif velocity.x > 0:  # Moving right
+	elif velocity.x > 0:
 		sprite.flip_h = false
+
+func handle_tilt(delta: float) -> void:
+	var target_tilt = tilt_amount * velocity.x / speed
+	sprite.rotation = lerp(sprite.rotation, target_tilt, 0.1)
