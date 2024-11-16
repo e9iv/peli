@@ -5,13 +5,13 @@ extends CharacterBody2D
 @export var speed: float = 50
 @export var sprintspd: float = 85
 @export_group("Dash Variables")
-@export var dash_speed: float = 150
+@export var dash_speed: float = 200
 @export var dash_duration: float = 0.2
 @export var dash_cooldown: float = 1.0
 @export_group("Accel & Decel")
 @export var accel: float = 1000
-@export var decel: float = 1000
-@export_group("Other")
+@export var decel: float = 950
+@export_group("Tilt Amount")
 @export var tilt_amount: float = 0.1
 
 # References
@@ -25,8 +25,16 @@ var is_dashing: bool = false
 
 func _ready() -> void:
 	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 0, 0)
 	tween.tween_property(self, "modulate:a", 1, 1)
 
+func _process(delta: float) -> void:
+	var mouse_pos = get_global_mouse_position()
+	#Flip sprite based on the mouse position
+	if mouse_pos.x < position.x:
+		sprite.flip_h = true
+	elif mouse_pos.x > position.x:
+		sprite.flip_h = false
 
 func _physics_process(delta: float) -> void:
 	# Handle dashing
@@ -85,9 +93,10 @@ func handle_animation() -> void:
 	if is_dashing:
 		pass
 	elif velocity.length() > 0.0:
-		sprite.play("run")
+		sprite.play("gun_run")
 	else:
-		sprite.play("idle")
+		sprite.play("gun_idle")
+
 
 	# Flip sprite based on velocity direction
 	if velocity.x < 0:
@@ -95,6 +104,7 @@ func handle_animation() -> void:
 	elif velocity.x > 0:
 		sprite.flip_h = false
 
+
 func handle_tilt(delta: float) -> void:
 	var target_tilt = tilt_amount * velocity.x / speed
-	sprite.rotation = lerp(sprite.rotation, target_tilt, 0.1)
+	self.rotation = lerp(self.rotation, target_tilt, 0.1)
