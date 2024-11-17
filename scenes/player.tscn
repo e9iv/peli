@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=38 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_hli4v"]
 [ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/sfx/footsteps/Concrete 1.wav" id="2_ck4b2"]
@@ -31,9 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/ak2.png" id="27_cdbe4"]
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/sfx/weaponsfx/cg1.wav" id="29_kk2n1"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/ak-outline.png" id="30_1vwbs"]
-[ext_resource type="Texture2D" uid="uid://do3pf5plht5qu" path="res://assets/sprites/light.png" id="31_5jipc"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/sfx/Retro Swooosh 07.wav" id="33_a0e7x"]
-[ext_resource type="PackedScene" uid="uid://bai3a48u6hhqx" path="res://scenes/ui.tscn" id="34_e76ke"]
+[ext_resource type="Texture2D" uid="uid://wh8j60rwp0p1" path="res://assets/stamina meter-small.png" id="34_fqxpj"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/sfx/weaponsfx/ineedmorebullets.wav" id="34_vn360"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
@@ -172,7 +171,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_5xhb4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.5, 4.5)
+zoom = Vector2(5, 5)
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
@@ -200,15 +199,6 @@ offset = Vector2(4, 1)
 position = Vector2(6, 0)
 target_position = Vector2(100, 0)
 
-[node name="PointLight2D" type="PointLight2D" parent="weapons"]
-visible = false
-position = Vector2(54, 0)
-scale = Vector2(4.88, 1)
-color = Color(1, 0.908333, 0.75, 1)
-shadow_enabled = true
-texture = ExtResource("31_5jipc")
-texture_scale = 0.33
-
 [node name="sfx" type="Node" parent="."]
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="sfx"]
@@ -225,8 +215,48 @@ stream = ExtResource("33_a0e7x")
 [node name="outofammo" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("34_vn360")
 
-[node name="UI" parent="." instance=ExtResource("34_e76ke")]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+z_index = 5
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -15.0
+offset_right = 9.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(12, 12)
+max_value = 30.0
+fill_mode = 4
+texture_under = ExtResource("34_fqxpj")
+texture_progress = ExtResource("34_fqxpj")
+tint_under = Color(0.14, 0.14, 0.14, 0.611765)
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
 visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

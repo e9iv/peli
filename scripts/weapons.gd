@@ -4,15 +4,15 @@ extends Node2D
 @onready var cam: Camera2D = $"../Camera2D"
 @onready var hit_sprite_scene : PackedScene = preload("res://scenes/blood.tscn")
 @onready var gunshot: AudioStreamPlayer2D = $"../sfx/gunshot"
-@onready var outline: Node2D = $Node2D
 @onready var outofammo: AudioStreamPlayer2D = $"../sfx/outofammo"
+@onready var ammo_bar: TextureProgressBar = $"../Control/TextureProgressBar"
 
 @export var damage: int = 10
 @export var range: float = 500.0
 
 # Ammo-related variables
-@export var max_ammo_in_clip = 10  # Maximum bullets in the clip
-@export var total_ammo = 30        # Total reserve ammo
+@export var max_ammo_in_clip = 30  # Maximum bullets in the clip
+@export var total_ammo = 90        # Total reserve ammo
 @export var current_clip = max_ammo_in_clip  # Ammo in the current clip
 @export var is_reloading = false   # Whether the weapon is reloading
 
@@ -23,7 +23,7 @@ extends Node2D
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	pass
+	update_ammo_bar()
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
@@ -45,6 +45,11 @@ func _process(delta: float) -> void:
 		for child in ak.get_children():
 			child.flip_v = false
 
+func update_ammo_bar():
+	# Update the TextureProgressBar to reflect current ammo
+	ammo_bar.max_value = max_ammo_in_clip  # Ensure the max_value is set
+	ammo_bar.value = current_clip
+
 func shoot():
 	if is_reloading:
 		print("Can't shoot while reloading!")
@@ -55,13 +60,14 @@ func shoot():
 		outofammo.play()
 		return
 
-	if (Time.get_ticks_msec() / 1000.0) - last_shot_time < cooldown:
+	if (Time.get_ticks_msec() / 250.0) - last_shot_time < cooldown:
 		print("Cooldown in progress...")
 		return
 
 	# Perform shooting
 	current_clip -= 1  # Reduce ammo in clip
-	last_shot_time = Time.get_ticks_msec() / 1000.0
+	last_shot_time = Time.get_ticks_msec() / 250.0
+	update_ammo_bar()
 	print("Bang! Ammo left in clip:", current_clip)
 	
 	gunshot.play()
@@ -114,6 +120,7 @@ func reload():
 
 	is_reloading = false
 	print("Reload complete! Ammo in clip:", current_clip, "Reserve ammo:", total_ammo)
+	update_ammo_bar()
 
 func spawn_bullet_tracer(start: Vector2, end: Vector2):
 	var tracer = Line2D.new()
