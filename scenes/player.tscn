@@ -1,17 +1,19 @@
-[gd_scene load_steps=31 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=39 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_hli4v"]
-[ext_resource type="Texture2D" uid="uid://dtpxy3bs5x7kn" path="res://assets/sprites/idle/nohands_idle_01.png" id="2_fkmil"]
+[ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/sfx/footsteps/Concrete 1.wav" id="2_ck4b2"]
+[ext_resource type="AudioStream" uid="uid://dglvfkvhr6u" path="res://assets/sfx/footsteps/Concrete 2.wav" id="2_m7hj6"]
 [ext_resource type="Texture2D" uid="uid://bo1ryxv74hsaf" path="res://assets/sprites/idle/basic_idle_01.png" id="2_maujm"]
-[ext_resource type="Texture2D" uid="uid://tiw473qapf6v" path="res://assets/sprites/idle/nohands_idle_02.png" id="3_13ol2"]
 [ext_resource type="Script" path="res://scripts/player/camera.gd" id="3_ebk54"]
 [ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/idle/basic_idle_02.png" id="3_iipmf"]
+[ext_resource type="Texture2D" uid="uid://6ibdbtqdkvc2" path="res://assets/sprites/idle/backpack_idle_01.png" id="4_k8qi7"]
 [ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/idle/basic_idle_04.png" id="4_p1rpk"]
-[ext_resource type="Texture2D" uid="uid://bkwq67f3vigbd" path="res://assets/sprites/idle/nohands_idle_04.png" id="4_ydnw6"]
+[ext_resource type="Texture2D" uid="uid://2jrw34s8n3do" path="res://assets/sprites/idle/backpack_idle_02.png" id="5_i6614"]
 [ext_resource type="Texture2D" uid="uid://bwhwsyfo4jmmn" path="res://assets/sprites/run/nohands_run_01.png" id="5_jdkwj"]
 [ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/run/basic_run_01.png" id="5_nxldd"]
 [ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/run/basic_run_02.png" id="6_16t75"]
 [ext_resource type="Texture2D" uid="uid://bss5krhh2eago" path="res://assets/sprites/run/nohands_run_02.png" id="6_e2sv5"]
+[ext_resource type="Texture2D" uid="uid://b2p4yy4qjh07k" path="res://assets/sprites/idle/backpack_idle_04.png" id="6_ij4vw"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/run/basic_run_03.png" id="7_a8kg3"]
 [ext_resource type="Texture2D" uid="uid://3tm25gpyvali" path="res://assets/sprites/run/nohands_run_03.png" id="7_w2ed0"]
 [ext_resource type="Texture2D" uid="uid://b8450mwywon4p" path="res://assets/sprites/run/nohands_run_04.png" id="8_mqn21"]
@@ -26,20 +28,31 @@
 [ext_resource type="Texture2D" uid="uid://bjam5ftmrtuvk" path="res://assets/sprites/run/basic_run_08.png" id="12_dm4xm"]
 [ext_resource type="Texture2D" uid="uid://c47k8jjtowvcp" path="res://assets/sprites/shadow.png" id="14_xywbf"]
 [ext_resource type="Script" path="res://scripts/weapons.gd" id="15_wpdju"]
-[ext_resource type="Texture2D" uid="uid://du10mxb6crl7s" path="res://assets/sprites/ak-outline1.png" id="19_cmhtt"]
 [ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/ak2.png" id="27_cdbe4"]
+[ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/sfx/weaponsfx/cg1.wav" id="29_kk2n1"]
+[ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/ak-outline.png" id="30_1vwbs"]
+[ext_resource type="Texture2D" uid="uid://do3pf5plht5qu" path="res://assets/sprites/light.png" id="31_5jipc"]
+[ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/sfx/Retro Swooosh 07.wav" id="33_a0e7x"]
+[ext_resource type="PackedScene" uid="uid://bai3a48u6hhqx" path="res://scenes/ui.tscn" id="34_e76ke"]
+[ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/sfx/weaponsfx/ineedmorebullets.wav" id="34_vn360"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
+random_pitch = 1.47
+streams_count = 2
+stream_0/stream = ExtResource("2_ck4b2")
+stream_1/stream = ExtResource("2_m7hj6")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pbkpr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fkmil")
+"texture": ExtResource("4_k8qi7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_13ol2")
+"texture": ExtResource("5_i6614")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ydnw6")
+"texture": ExtResource("6_ij4vw")
 }],
 "loop": true,
 "name": &"gun_idle",
@@ -122,9 +135,11 @@ animations = [{
 size = Vector2(8, 9)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
+z_index = 21
 texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_hli4v")
+sfx_footsteps = SubResource("AudioStreamRandomizer_tsha6")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -176,15 +191,42 @@ position = Vector2(-3, 0)
 texture = ExtResource("27_cdbe4")
 offset = Vector2(4, 1)
 
-[node name="outline" type="Sprite2D" parent="weapons/Ak"]
+[node name="Sprite2D" type="Sprite2D" parent="weapons/Ak"]
 z_index = -2
-texture_filter = 1
-position = Vector2(-3, 0)
-texture = ExtResource("19_cmhtt")
-offset = Vector2(7, 1)
+texture = ExtResource("30_1vwbs")
+offset = Vector2(4, 1)
 
 [node name="RayCast2D" type="RayCast2D" parent="weapons"]
 position = Vector2(6, 0)
 target_position = Vector2(100, 0)
 
+[node name="PointLight2D" type="PointLight2D" parent="weapons"]
+visible = false
+position = Vector2(54, 0)
+scale = Vector2(4.88, 1)
+color = Color(1, 0.908333, 0.75, 1)
+shadow_enabled = true
+texture = ExtResource("31_5jipc")
+texture_scale = 0.33
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="sfx"]
+volume_db = -13.867
+bus = &"sfx"
+
+[node name="gunshot" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("29_kk2n1")
+bus = &"sfx"
+
+[node name="dashsfx" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("33_a0e7x")
+
+[node name="outofammo" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("34_vn360")
+
+[node name="UI" parent="." instance=ExtResource("34_e76ke")]
+visible = false
+
+[connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

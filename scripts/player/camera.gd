@@ -48,10 +48,8 @@ func shake_camera():
 	camera.offset = Vector2.ZERO  # Reset
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("shoot"):
-		Global.camera.shake_camera()
-	elif event is InputEventMouseMotion:
-			target_distance = center_pos.distance_to(get_local_mouse_position()) / 2
+	if event is InputEventMouseMotion:
+		target_distance = center_pos.distance_to(get_local_mouse_position()) / 2
 
 func _on_timer_timeout() -> void:
 	set_process(false)

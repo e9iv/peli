@@ -14,14 +14,21 @@ extends CharacterBody2D
 @export_group("Tilt Amount")
 @export var tilt_amount: float = 0.1
 
+@export var sfx_footsteps : AudioStreamRandomizer
+@onready var dashsfx: AudioStreamPlayer2D = $sfx/dashsfx
+
 # References
 @onready var sprite: AnimatedSprite2D = $Sprite2D
+@onready var sfx: AudioStreamPlayer2D = $sfx/sfx
 
 # Variables for dash and movement
 var dash_timer: float = 0.0
 var dash_cooldown_timer: float = 0.0
 var dash_direction: Vector2 = Vector2.ZERO
 var is_dashing: bool = false
+
+
+var footsteps_frames : Array = [1,5]
 
 func _ready() -> void:
 	var tween = get_tree().create_tween()
@@ -81,10 +88,13 @@ func handle_movement(delta: float) -> void:
 	# Check for dash input
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0.0:
 		start_dash(direction)
+		load_sfx(sfx_footsteps)
+		sfx.play()
 
 func start_dash(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
 		is_dashing = true
+		dashsfx.play()
 		dash_timer = dash_duration
 		dash_cooldown_timer = dash_cooldown
 		dash_direction = direction
@@ -108,3 +118,14 @@ func handle_animation() -> void:
 func handle_tilt(delta: float) -> void:
 	var target_tilt = tilt_amount * velocity.x / speed
 	self.rotation = lerp(self.rotation, target_tilt, 0.1)
+
+func load_sfx(sfx_to_load):
+	if sfx.stream != sfx_to_load:
+		sfx.stop()
+		sfx.stream = sfx_to_load
+
+
+func _on_sprite_frame_changed() -> void:
+	if sprite.animation == "gun_idle": return
+	load_sfx(sfx_footsteps)
+	if sprite.frame in footsteps_frames: sfx.play()
