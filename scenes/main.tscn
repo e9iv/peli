@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ifxnn"]
 [ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://scenes/player.tscn" id="1_pc3h1"]
 [ext_resource type="PackedScene" uid="uid://dyol8vq3v3wt1" path="res://scenes/test.tscn" id="2_ipohu"]
-[ext_resource type="Texture2D" uid="uid://bohq5hhjukxxt" path="res://assets/tilesets/Overworld.png" id="3_mlpx6"]
+[ext_resource type="Texture2D" uid="uid://buiyo5tsg1q5a" path="res://assets/tilesets/Overworld.png" id="3_mlpx6"]
 [ext_resource type="AudioStream" uid="uid://b7h8c6ojbnngv" path="res://assets/sfx/Outdoor_Ambiance.mp3" id="4_2at3o"]
 [ext_resource type="Texture2D" uid="uid://dwd4hbga6qxjn" path="res://assets/tilesets/tree-variations.png" id="4_3h7cg"]
 [ext_resource type="Shader" path="res://scripts/shaders/treesway.gdshader" id="4_t4cti"]
@@ -1576,8 +1576,9 @@ modulate = Color(0, 0, 0, 0)
 script = ExtResource("1_ifxnn")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 texture_filter = 1
-color = Color(1, 0.9715, 0.81, 1)
+color = Color(1, 0.955, 0.7, 1)
 range_z_min = -100
 range_z_max = 100
 shadow_enabled = true
@@ -1586,11 +1587,13 @@ height = 1.0
 max_distance = 100.0
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 z_index = 100
 texture_filter = 1
 occluder = SubResource("OccluderPolygon2D_v1rmw")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+visible = false
 z_index = 101
 texture_filter = 1
 occluder = SubResource("OccluderPolygon2D_d2jsj")
@@ -1601,11 +1604,20 @@ z_index = 23
 [node name="test" parent="." instance=ExtResource("2_ipohu")]
 position = Vector2(26, 11)
 
+[node name="sounds" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource("4_2at3o")
+autoplay = true
+parameters/looping = true
+
 [node name="water" type="TileMapLayer" parent="."]
 z_index = -2
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD9/wEAAAADAAcAAAD9/wAAAAADAAcAAAD9////AAADAAcAAAD9//7/AAADAAcAAAD9//3/AAADAAcAAAD9//z/AAADAAcAAAD9//v/AAADAAcAAAD8//v/AAADAAcAAAD7//v/AAADAAcAAAD7//z/AAADAAcAAAD7//3/AAADAAcAAAD8//3/AAADAAcAAAD8//7/AAADAAcAAAD8////AAADAAcAAAD8/wAAAAADAAcAAAD8//z/AAADAAcAAAD7//7/AAADAAcAAAD7////AAADAAcAAAD7/wAAAAADAAcAAAD7/wEAAAADAAcAAAD7/wIAAAADAAcAAAD7/wMAAAADAAcAAAD8/wMAAAADAAcAAAD8/wIAAAADAAcAAAD8/wEAAAADAAcAAAD9/wIAAAADAAcAAAD9/wMAAAADAAcAAAD9/wQAAAADAAcAAAD8/wQAAAADAAcAAAD7/wQAAAADAAcAAAD7/wUAAAADAAcAAAD8/wUAAAADAAcAAAD8/wYAAAADAAcAAAD9/wYAAAADAAcAAAD9/wUAAAADAAcAAAD7/wYAAAADAAcAAAAHAAcAAAADAAcAAAAGAAcAAAADAAcAAAAFAAcAAAADAAcAAAAEAAcAAAADAAcAAAADAAcAAAADAAcAAAACAAcAAAADAAcAAAABAAcAAAADAAcAAAAAAAcAAAADAAcAAAD//wcAAAADAAcAAAD+/wcAAAADAAcAAAD9/wcAAAADAAcAAAD8/wcAAAADAAcAAAD7/wcAAAADAAcAAAD8/wgAAAADAAcAAAD9/wgAAAADAAcAAAD+/wgAAAADAAcAAAD//wgAAAADAAcAAAAAAAgAAAADAAcAAAABAAgAAAADAAcAAAACAAgAAAADAAcAAAADAAgAAAADAAcAAAAEAAgAAAADAAcAAAAFAAgAAAADAAcAAAAGAAgAAAADAAcAAAAHAAgAAAADAAcAAAAIAAgAAAADAAcAAAD7/wgAAAADAAcAAAD6/wgAAAADAAcAAAD5/wgAAAADAAcAAAD7/wkAAAADAAcAAAD8/wkAAAADAAcAAAD9/wkAAAADAAcAAAD+/wkAAAADAAcAAAD//wkAAAADAAcAAAAAAAkAAAADAAcAAAABAAkAAAADAAcAAAACAAkAAAADAAcAAAADAAkAAAADAAcAAAAEAAkAAAADAAcAAAAFAAkAAAADAAcAAAAGAAkAAAADAAcAAAAHAAkAAAADAAcAAAAJAAgAAAADAAcAAAAIAAcAAAADAAcAAAAIAAkAAAADAAcAAAAJAAkAAAADAAcAAAAJAAcAAAADAAcAAAD6/wkAAAADAAcAAAD5/wkAAAADAAcAAAD4/wkAAAADAAcAAAD4/wgAAAADAAcAAAD4/wcAAAADAAcAAAD5/wcAAAADAAcAAAD6/wcAAAADAAcAAAD4/wYAAAADAAcAAAD5/wYAAAADAAcAAAD5/wUAAAADAAcAAAD6/wUAAAADAAcAAAD6/wYAAAADAAcAAAD5/wQAAAADAAcAAAD4/wQAAAADAAcAAAD4/wUAAAADAAcAAAD5/wMAAAADAAcAAAD6/wMAAAADAAcAAAD6/wQAAAADAAcAAAD5/wIAAAADAAcAAAD6/wIAAAADAAcAAAD4/wMAAAADAAcAAAD4/wIAAAADAAcAAAD4/wEAAAADAAcAAAD4/wAAAAADAAcAAAD4////AAADAAcAAAD4//7/AAADAAcAAAD4//3/AAADAAcAAAD4//z/AAADAAcAAAD4//v/AAADAAcAAAD5//v/AAADAAcAAAD6//v/AAADAAcAAAD6//z/AAADAAcAAAD6//3/AAADAAcAAAD6//7/AAADAAcAAAD6/wEAAAADAAcAAAD6/wAAAAADAAcAAAD5/wAAAAADAAcAAAD5////AAADAAcAAAD5//7/AAADAAcAAAD5//3/AAADAAcAAAD5//z/AAADAAcAAAD5/wEAAAADAAcAAAD6////AAADAAcAAAAIAAYAAAADAAcAAAAIAAUAAAADAAcAAAAIAAQAAAADAAcAAAAIAAMAAAADAAcAAAAJAAQAAAADAAcAAAAJAAUAAAADAAcAAAAJAAYAAAADAAcAAAAJAAMAAAADAAcAAAADAPv/AAAFAAkAAAAEAPv/AAAFAAkAAAAFAPv/AAAFAAkAAAAGAPv/AAAFAAkAAAACAPv/AAAFAAkAAAABAPv/AAAFAAkAAAAAAPv/AAAFAAkAAAD///v/AAAFAAkAAAD+//v/AAAFAAkAAAA=")
 tile_set = SubResource("TileSet_yy8bq")
+collision_visibility_mode = 1
+navigation_enabled = false
 
 [node name="ground" type="TileMapLayer" parent="."]
 z_index = -2
@@ -1630,10 +1642,3 @@ tile_map_data = PackedByteArray("AAACAAUAAAADAAsAAAD3/wIAAQAAAA4AAAD+/wIAAQAHAA4
 tile_set = SubResource("TileSet_yy8bq")
 y_sort_origin = 1
 use_kinematic_bodies = true
-
-[node name="sounds" type="Node" parent="."]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="sounds"]
-stream = ExtResource("4_2at3o")
-autoplay = true
-parameters/looping = true

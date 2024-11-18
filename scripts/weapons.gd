@@ -5,7 +5,8 @@ extends Node2D
 @onready var hit_sprite_scene : PackedScene = preload("res://scenes/blood.tscn")
 @onready var gunshot: AudioStreamPlayer2D = $"../sfx/gunshot"
 @onready var outofammo: AudioStreamPlayer2D = $"../sfx/outofammo"
-@onready var ammo_bar: TextureProgressBar = $"../Control/TextureProgressBar"
+@onready var ammo_bar: TextureProgressBar = $"../ui/TextureProgressBar"
+@onready var reloadsfx: AudioStreamPlayer2D = $"../sfx/reload"
 
 @export var damage: int = 10
 @export var range: float = 500.0
@@ -68,6 +69,7 @@ func shoot():
 	current_clip -= 1  # Reduce ammo in clip
 	last_shot_time = Time.get_ticks_msec() / 250.0
 	update_ammo_bar()
+	Global.camera.shake(0.5, 0.25)
 	print("Bang! Ammo left in clip:", current_clip)
 	
 	gunshot.play()
@@ -107,6 +109,7 @@ func reload():
 		return
 
 	is_reloading = true
+	reloadsfx.play()
 	print("Reloading...")
 
 	# Simulate reload delay

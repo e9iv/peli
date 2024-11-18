@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buiyo5tsg1q5a"
-path="res://.godot/imported/Overworld.png-f3c5a4d08c6548d1b6418a9482726907.ctex"
+uid="uid://svhdvaldpg5c"
+path="res://.godot/imported/heart.png-3f1f80c56a1ca447e0349f7dd68592e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/Overworld.png"
-dest_files=["res://.godot/imported/Overworld.png-f3c5a4d08c6548d1b6418a9482726907.ctex"]
+source_file="res://assets/ui/heart.png"
+dest_files=["res://.godot/imported/heart.png-3f1f80c56a1ca447e0349f7dd68592e0.ctex"]
 
 [params]
 

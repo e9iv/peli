@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=42 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_hli4v"]
 [ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/sfx/footsteps/Concrete 1.wav" id="2_ck4b2"]
@@ -8,12 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/idle/basic_idle_02.png" id="3_iipmf"]
 [ext_resource type="Texture2D" uid="uid://6ibdbtqdkvc2" path="res://assets/sprites/idle/backpack_idle_01.png" id="4_k8qi7"]
 [ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/idle/basic_idle_04.png" id="4_p1rpk"]
+[ext_resource type="Texture2D" uid="uid://dtpxy3bs5x7kn" path="res://assets/sprites/idle/nohands_idle_01.png" id="4_qxm7g"]
+[ext_resource type="Texture2D" uid="uid://tiw473qapf6v" path="res://assets/sprites/idle/nohands_idle_02.png" id="5_2xklh"]
 [ext_resource type="Texture2D" uid="uid://2jrw34s8n3do" path="res://assets/sprites/idle/backpack_idle_02.png" id="5_i6614"]
 [ext_resource type="Texture2D" uid="uid://bwhwsyfo4jmmn" path="res://assets/sprites/run/nohands_run_01.png" id="5_jdkwj"]
 [ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/run/basic_run_01.png" id="5_nxldd"]
 [ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/run/basic_run_02.png" id="6_16t75"]
 [ext_resource type="Texture2D" uid="uid://bss5krhh2eago" path="res://assets/sprites/run/nohands_run_02.png" id="6_e2sv5"]
 [ext_resource type="Texture2D" uid="uid://b2p4yy4qjh07k" path="res://assets/sprites/idle/backpack_idle_04.png" id="6_ij4vw"]
+[ext_resource type="Texture2D" uid="uid://bkwq67f3vigbd" path="res://assets/sprites/idle/nohands_idle_04.png" id="6_ul5yv"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/run/basic_run_03.png" id="7_a8kg3"]
 [ext_resource type="Texture2D" uid="uid://3tm25gpyvali" path="res://assets/sprites/run/nohands_run_03.png" id="7_w2ed0"]
 [ext_resource type="Texture2D" uid="uid://b8450mwywon4p" path="res://assets/sprites/run/nohands_run_04.png" id="8_mqn21"]
@@ -32,8 +35,9 @@
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/sfx/weaponsfx/cg1.wav" id="29_kk2n1"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/ak-outline.png" id="30_1vwbs"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/sfx/Retro Swooosh 07.wav" id="33_a0e7x"]
-[ext_resource type="Texture2D" uid="uid://wh8j60rwp0p1" path="res://assets/stamina meter-small.png" id="34_fqxpj"]
+[ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/sfx/weaponsfx/reload.wav" id="34_ho42k"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/sfx/weaponsfx/ineedmorebullets.wav" id="34_vn360"]
+[ext_resource type="PackedScene" uid="uid://cmc7dwlpyb3m5" path="res://scenes/ui.tscn" id="38_psjmv"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
 random_pitch = 1.47
@@ -43,6 +47,20 @@ stream_1/stream = ExtResource("2_m7hj6")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pbkpr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qxm7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2xklh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ul5yv")
+}],
+"loop": true,
+"name": &"bp_idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_k8qi7")
@@ -98,6 +116,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -192,6 +215,7 @@ offset = Vector2(4, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="weapons/Ak"]
 z_index = -2
+texture_filter = 1
 texture = ExtResource("30_1vwbs")
 offset = Vector2(4, 1)
 
@@ -211,52 +235,18 @@ bus = &"sfx"
 
 [node name="dashsfx" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("33_a0e7x")
+bus = &"sfx"
 
 [node name="outofammo" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("34_vn360")
+bus = &"sfx"
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="reload" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("34_ho42k")
+bus = &"sfx"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
-z_index = 5
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -15.0
-offset_right = 9.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-pivot_offset = Vector2(12, 12)
-max_value = 30.0
-fill_mode = 4
-texture_under = ExtResource("34_fqxpj")
-texture_progress = ExtResource("34_fqxpj")
-tint_under = Color(0.14, 0.14, 0.14, 0.611765)
-
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="ui" parent="." instance=ExtResource("38_psjmv")]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

@@ -630,6 +630,7 @@ animations = [{
 }]
 
 [node name="blood" type="AnimatedSprite2D"]
+modulate = Color(0, 1, 0.216667, 1)
 z_index = 21
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
