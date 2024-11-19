@@ -13,13 +13,16 @@ extends CharacterBody2D
 @export var decel: float = 950
 @export_group("Tilt Amount")
 @export var tilt_amount: float = 0.1
-
-@export var sfx_footsteps : AudioStreamRandomizer
-@onready var dashsfx: AudioStreamPlayer2D = $sfx/dashsfx
+@export_group("Health")
+@export var max_health : float = 100.0
+@export var current_health = max_health
+@onready var health_bar: TextureProgressBar = $ui/TextureProgressBar3
 
 # References
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var sfx: AudioStreamPlayer2D = $sfx/sfx
+@onready var dashsfx: AudioStreamPlayer2D = $sfx/dashsfx
+@export var sfx_footsteps : AudioStreamRandomizer
 
 # Variables for dash and movement
 var dash_timer: float = 0.0
@@ -27,13 +30,13 @@ var dash_cooldown_timer: float = 0.0
 var dash_direction: Vector2 = Vector2.ZERO
 var is_dashing: bool = false
 
-
 var footsteps_frames : Array = [1,5]
 
 func _ready() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 0, 0)
 	tween.tween_property(self, "modulate:a", 1, 1)
+	update_health_bar()
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
@@ -64,6 +67,10 @@ func _physics_process(delta: float) -> void:
 	# Update animations and tilt
 	handle_animation()
 	handle_tilt(delta)
+
+func update_health_bar():
+	health_bar.max_value = max_health  # Ensure the max_value is set
+	health_bar.value = current_health
 
 func handle_movement(delta: float) -> void:
 	var direction: Vector2 = Vector2.ZERO
@@ -107,13 +114,11 @@ func handle_animation() -> void:
 	else:
 		sprite.play("gun_idle")
 
-
 	# Flip sprite based on velocity direction
 	if velocity.x < 0:
 		sprite.flip_h = true
 	elif velocity.x > 0:
 		sprite.flip_h = false
-
 
 func handle_tilt(delta: float) -> void:
 	var target_tilt = tilt_amount * velocity.x / speed
@@ -122,6 +127,7 @@ func handle_tilt(delta: float) -> void:
 func load_sfx(sfx_to_load):
 	if sfx.stream != sfx_to_load:
 		sfx.stop()
+		
 		sfx.stream = sfx_to_load
 
 

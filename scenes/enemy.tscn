@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://br2tjbarm4cul"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pjc4v"]
+[ext_resource type="Texture2D" uid="uid://yh28f81n8xb2" path="res://assets/sprites/idle/zombie_idle1.png" id="2_27ku2"]
+[ext_resource type="Texture2D" uid="uid://ddecwgm8lrn8u" path="res://assets/sprites/idle/zombie_idle2.png" id="3_buwde"]
+[ext_resource type="Texture2D" uid="uid://b5nkuhrmc3ki3" path="res://assets/sprites/idle/zombie_idle3.png" id="4_1j6qu"]
+[ext_resource type="Texture2D" uid="uid://ddulw7rsnwjxa" path="res://assets/sprites/idle/zombie_idle4.png" id="5_w30rf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pycgh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_27ku2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_buwde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1j6qu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w30rf")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnbfk"]
+size = Vector2(8, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ykihf"]
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_pjc4v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pycgh")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_vnbfk")
+
+[node name="hit_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area"]
+shape = SubResource("CircleShape2D_ykihf")
+debug_color = Color(0.879221, 0, 0.211137, 0.42)

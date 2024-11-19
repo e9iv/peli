@@ -246,7 +246,8 @@ stream = ExtResource("34_ho42k")
 bus = &"sfx"
 
 [node name="ui" parent="." instance=ExtResource("38_psjmv")]
-visible = false
 
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
+
+[editable path="ui"]

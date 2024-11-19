@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3803gshr36jf"]
+
+[sub_resource type="Gradient" id="Gradient_vsyp7"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0lvw5"]
+gradient = SubResource("Gradient_vsyp7")
+
+[sub_resource type="Gradient" id="Gradient_6m0e7"]
+offsets = PackedFloat32Array(0, 0.516854, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f7o57"]
+gradient = SubResource("Gradient_6m0e7")
+
+[sub_resource type="Curve" id="Curve_3cmjr"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.087963, 91.3208), 0.0, 0.0, 0, 0, Vector2(0.24537, 18.868), 0.0, 0.0, 0, 0, Vector2(0.402778, 103.396), 0.0, 0.0, 0, 0, Vector2(0.550926, 6.79245), 0.0, 0.0, 0, 0, Vector2(0.708333, 91.3208), 0.0, 0.0, 0, 0, Vector2(0.856482, 0.75473), 0.0, 0.0, 0, 0, Vector2(1, 79.2453), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="CurveTexture" id="CurveTexture_180uu"]
+curve = SubResource("Curve_3cmjr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aw22d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(200, 200, 1)
+gravity = Vector3(100, 20, 0)
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 6.0
+tangential_accel_curve = SubResource("CurveTexture_180uu")
+damping_max = 100.0
+scale_min = 0.2
+scale_max = 0.3
+color = Color(1, 1, 1, 0.298039)
+color_ramp = SubResource("GradientTexture1D_f7o57")
+color_initial_ramp = SubResource("GradientTexture1D_0lvw5")
+
+[sub_resource type="Gradient" id="Gradient_tn8yx"]
+offsets = PackedFloat32Array(0.0176991, 0.522124)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_unu4s"]
+gradient = SubResource("Gradient_tn8yx")
+width = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[node name="wind" type="GPUParticles2D"]
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_aw22d")
+texture = SubResource("GradientTexture2D_unu4s")
+lifetime = 5.0
+preprocess = 2.0
+randomness = 1.0
+trail_enabled = true
+trail_lifetime = 0.5

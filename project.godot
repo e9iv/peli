@@ -26,7 +26,7 @@ EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.g
 [display]
 
 window/vsync/vsync_mode=0
-mouse_cursor/custom_image="res://assets/kenney_cursor-pixel-pack/Tiles/tile_0057.png"
+mouse_cursor/custom_image="res://assets/kenney_cursor-pixel-pack/Tiles/tile_0122.png"
 
 [editor_plugins]
 

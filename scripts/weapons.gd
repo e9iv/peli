@@ -8,7 +8,6 @@ extends Node2D
 @onready var ammo_bar: TextureProgressBar = $"../ui/TextureProgressBar"
 @onready var reloadsfx: AudioStreamPlayer2D = $"../sfx/reload"
 
-@export var damage: int = 10
 @export var range: float = 500.0
 
 # Ammo-related variables
@@ -42,7 +41,7 @@ func _process(delta: float) -> void:
 		$RayCast2D.position = Vector2(6, 0)
 		ak.position = Vector2(-3, 0)
 		ak.flip_v = false
-	 #Flip children$"."
+	 #Flip children
 		for child in ak.get_children():
 			child.flip_v = false
 
@@ -69,7 +68,7 @@ func shoot():
 	current_clip -= 1  # Reduce ammo in clip
 	last_shot_time = Time.get_ticks_msec() / 250.0
 	update_ammo_bar()
-	Global.camera.shake(0.5, 0.25)
+	#Global.camera.shake(0.5, 0.25)
 	print("Bang! Ammo left in clip:", current_clip)
 	
 	gunshot.play()
@@ -83,7 +82,9 @@ func shoot():
 		var collider = raycast.get_collider()
 
 		print("Hit at:", collision_point)  # Debug: Check if the point is valid
-
+		var rng = RandomNumberGenerator.new()
+		var damage : int = rng.randf_range(18, 22)
+		print(damage)
 		# Apply damage to the collider
 		if collider.has_method("take_damage"):
 			collider.take_damage(damage)
@@ -189,7 +190,7 @@ func place_hit_sprite(position: Vector2):
 					blood.connect("animation_finished", Callable(blood, "queue_free"))
 
 func _input(event):
-	if event.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		shoot()
 	if Input.is_action_just_pressed("reload"):
 		reload()
