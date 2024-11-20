@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b7o3gtsojfdmq"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/ripple.gdshader" id="1_6c52b"]
+[ext_resource type="Shader" path="res://common/shaders/ripple.gdshader" id="1_6c52b"]
 [ext_resource type="Shader" path="res://shaders/rays.gdshader" id="1_lkpbn"]
 [ext_resource type="FontFile" uid="uid://dx1njxk84joox" path="res://assets/fonts/Silver.ttf" id="3_v5rcf"]
 

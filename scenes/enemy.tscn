@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://br2tjbarm4cul"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pjc4v"]
+[ext_resource type="Script" path="res://common/enemy/enemy.gd" id="1_pjc4v"]
 [ext_resource type="Texture2D" uid="uid://yh28f81n8xb2" path="res://assets/sprites/idle/zombie_idle1.png" id="2_27ku2"]
 [ext_resource type="Texture2D" uid="uid://ddecwgm8lrn8u" path="res://assets/sprites/idle/zombie_idle2.png" id="3_buwde"]
 [ext_resource type="Texture2D" uid="uid://b5nkuhrmc3ki3" path="res://assets/sprites/idle/zombie_idle3.png" id="4_1j6qu"]

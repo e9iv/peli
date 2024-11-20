@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_up7la"]
 [ext_resource type="Texture2D" uid="uid://bo1ryxv74hsaf" path="res://assets/sprites/idle/basic_idle_01.png" id="2_hkk8i"]
 [ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/idle/basic_idle_02.png" id="3_f3ks5"]
-[ext_resource type="PackedScene" uid="uid://dgy10sv1cs5i6" path="res://interaction/interaction-area/interaction_area.tscn" id="3_i72vl"]
+[ext_resource type="PackedScene" uid="uid://dgy10sv1cs5i6" path="res://common/interaction/interaction-area/interaction_area.tscn" id="3_i72vl"]
 [ext_resource type="FontFile" uid="uid://b6qd31q3ljoal" path="res://assets/fonts/monogram-extended-italic.ttf" id="4_rwc83"]
 [ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/idle/basic_idle_04.png" id="5_bihju"]
 [ext_resource type="FontFile" uid="uid://df63stwd37cxt" path="res://assets/fonts/monogram-extended.ttf" id="7_04gnt"]

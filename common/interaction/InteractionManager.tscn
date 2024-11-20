@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://f8rb71yk4ykp"]
 
-[ext_resource type="Script" path="res://interaction/interaction_manager.gd" id="1_te07s"]
+[ext_resource type="Script" path="res://common/interaction/interaction_manager.gd" id="1_te07s"]
 [ext_resource type="Texture2D" uid="uid://bv51kicrgnfhu" path="res://assets/inputprompts/Tiles (White)/tile_0359.png" id="2_v3u3f"]
 [ext_resource type="FontFile" uid="uid://df63stwd37cxt" path="res://assets/fonts/monogram-extended.ttf" id="3_ei1bw"]
 

@@ -12,7 +12,7 @@ var pos_y : int
 
 @onready var camera: Camera2D = $"."
 @onready var timer: Timer = $Timer
-@onready var tween : Tween = create_tween()
+@onready var tween : Tween = get_tree().create_tween()
 
 func _ready() -> void:
 	set_process(true)
@@ -52,5 +52,6 @@ func _input(event: InputEvent) -> void:
 		target_distance = center_pos.distance_to(get_local_mouse_position()) / 2
 
 func _on_timer_timeout() -> void:
+	var tween = get_tree().create_tween()
 	set_process(false)
 	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)

@@ -1,0 +1,255 @@
+[gd_scene load_steps=42 format=3 uid="uid://583hn6mui13j"]
+
+[ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
+[ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/sfx/footsteps/Concrete 1.wav" id="2_bjdqa"]
+[ext_resource type="AudioStream" uid="uid://dglvfkvhr6u" path="res://assets/sfx/footsteps/Concrete 2.wav" id="3_ihkc4"]
+[ext_resource type="Texture2D" uid="uid://dtpxy3bs5x7kn" path="res://assets/sprites/idle/nohands_idle_01.png" id="4_3q5w2"]
+[ext_resource type="Texture2D" uid="uid://tiw473qapf6v" path="res://assets/sprites/idle/nohands_idle_02.png" id="5_3d2be"]
+[ext_resource type="Texture2D" uid="uid://bkwq67f3vigbd" path="res://assets/sprites/idle/nohands_idle_04.png" id="6_ue105"]
+[ext_resource type="Texture2D" uid="uid://6ibdbtqdkvc2" path="res://assets/sprites/idle/backpack_idle_01.png" id="7_y7wj2"]
+[ext_resource type="Texture2D" uid="uid://2jrw34s8n3do" path="res://assets/sprites/idle/backpack_idle_02.png" id="8_r67s5"]
+[ext_resource type="Texture2D" uid="uid://b2p4yy4qjh07k" path="res://assets/sprites/idle/backpack_idle_04.png" id="9_5bd1r"]
+[ext_resource type="Texture2D" uid="uid://bwhwsyfo4jmmn" path="res://assets/sprites/run/nohands_run_01.png" id="10_tolsk"]
+[ext_resource type="Texture2D" uid="uid://bss5krhh2eago" path="res://assets/sprites/run/nohands_run_02.png" id="11_cg4x2"]
+[ext_resource type="Texture2D" uid="uid://3tm25gpyvali" path="res://assets/sprites/run/nohands_run_03.png" id="12_m2rtq"]
+[ext_resource type="Texture2D" uid="uid://b8450mwywon4p" path="res://assets/sprites/run/nohands_run_04.png" id="13_mu8np"]
+[ext_resource type="Texture2D" uid="uid://begom41mmiwo7" path="res://assets/sprites/run/nohands_run_05.png" id="14_olggc"]
+[ext_resource type="Texture2D" uid="uid://b8oc8j4jjb56w" path="res://assets/sprites/run/nohands_run_06.png" id="15_0mmtq"]
+[ext_resource type="Texture2D" uid="uid://cww5qxkisw4u7" path="res://assets/sprites/run/nohands_run_07.png" id="16_k0rq2"]
+[ext_resource type="Texture2D" uid="uid://du6afsevtmuuu" path="res://assets/sprites/run/nohands_run_08.png" id="17_pa78a"]
+[ext_resource type="Texture2D" uid="uid://bo1ryxv74hsaf" path="res://assets/sprites/idle/basic_idle_01.png" id="18_ftahi"]
+[ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/idle/basic_idle_02.png" id="19_g1efc"]
+[ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/idle/basic_idle_04.png" id="20_khjm2"]
+[ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/run/basic_run_01.png" id="21_hdsps"]
+[ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/run/basic_run_02.png" id="22_cabqj"]
+[ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/run/basic_run_03.png" id="23_7kai0"]
+[ext_resource type="Texture2D" uid="uid://yrh180vdfo0b" path="res://assets/sprites/run/basic_run_04.png" id="24_xkjx2"]
+[ext_resource type="Texture2D" uid="uid://c21il6g8opgoh" path="res://assets/sprites/run/basic_run_05.png" id="25_q27be"]
+[ext_resource type="Texture2D" uid="uid://dhpq1qvbq26oc" path="res://assets/sprites/run/basic_run_06.png" id="26_xakhe"]
+[ext_resource type="Texture2D" uid="uid://cs8txpdoo2paf" path="res://assets/sprites/run/basic_run_07.png" id="27_d1pvs"]
+[ext_resource type="Texture2D" uid="uid://bjam5ftmrtuvk" path="res://assets/sprites/run/basic_run_08.png" id="28_ilfyv"]
+[ext_resource type="Texture2D" uid="uid://c47k8jjtowvcp" path="res://assets/sprites/shadow.png" id="29_lhdrh"]
+[ext_resource type="Script" path="res://common/player/camera.gd" id="30_bb0hi"]
+[ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/sfx/weaponsfx/cg1.wav" id="34_myetu"]
+[ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
+[ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/sfx/Retro Swooosh 07.wav" id="35_id2wu"]
+[ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/sfx/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
+[ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_qpi83"]
+[ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/sfx/weaponsfx/reload.wav" id="37_3ukmx"]
+[ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/ak2.png" id="37_45hnu"]
+[ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/ak-outline.png" id="38_3slrs"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
+random_pitch = 1.47
+streams_count = 2
+stream_0/stream = ExtResource("2_bjdqa")
+stream_1/stream = ExtResource("3_ihkc4")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbkpr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3q5w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3d2be")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ue105")
+}],
+"loop": true,
+"name": &"bp_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_y7wj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r67s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5bd1r")
+}],
+"loop": true,
+"name": &"gun_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_tolsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cg4x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m2rtq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mu8np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_olggc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_0mmtq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_k0rq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pa78a")
+}],
+"loop": true,
+"name": &"gun_run",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_ftahi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g1efc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_khjm2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_hdsps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cabqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_7kai0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_xkjx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_q27be")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_xakhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_d1pvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ilfyv")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhb4"]
+size = Vector2(8, 9)
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+texture_filter = 1
+collision_layer = 2
+script = ExtResource("1_wr1jw")
+sfx_footsteps = SubResource("AudioStreamRandomizer_tsha6")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_pbkpr")
+animation = &"gun_idle"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"pending_changes": {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": ""
+},
+"slice_section": true
+}
+
+[node name="shadow" type="Sprite2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(0, 4)
+scale = Vector2(1, 0.95)
+texture = ExtResource("29_lhdrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5xhb4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("30_bb0hi")
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+one_shot = true
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="sfx"]
+volume_db = -13.867
+bus = &"sfx"
+
+[node name="gunshot" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("34_myetu")
+bus = &"sfx"
+
+[node name="dashsfx" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("35_id2wu")
+bus = &"sfx"
+
+[node name="outofammo" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("36_a4yov")
+bus = &"sfx"
+
+[node name="reload" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("37_3ukmx")
+bus = &"sfx"
+
+[node name="weapons" type="Node2D" parent="."]
+
+[node name="ak" type="Node2D" parent="weapons" node_paths=PackedStringArray("barrel_origin", "sprite", "fire_sound", "reload_sound")]
+z_index = 2
+script = ExtResource("35_hq2op")
+bullet = ExtResource("36_qpi83")
+barrel_origin = NodePath("barrel")
+sprite = NodePath("gun")
+fire_sound = NodePath("../../sfx/gunshot")
+reload_sound = NodePath("../../sfx/reload")
+max_ammo_in_mag = 30
+total_ammo = 90
+
+[node name="gun" type="Sprite2D" parent="weapons/ak"]
+position = Vector2(-3, 0)
+texture = ExtResource("37_45hnu")
+offset = Vector2(4, 1)
+
+[node name="outline" type="Sprite2D" parent="weapons/ak/gun"]
+z_index = -2
+texture = ExtResource("38_3slrs")
+offset = Vector2(4, 1)
+
+[node name="barrel" type="Node2D" parent="weapons/ak"]
+position = Vector2(6, 0)
+
+[connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

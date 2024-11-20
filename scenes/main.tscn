@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjd2pnd1x1jsx"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ifxnn"]
-[ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://scenes/player.tscn" id="1_pc3h1"]
+[ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://common/player/player.tscn" id="1_pc3h1"]
 [ext_resource type="PackedScene" uid="uid://bjenuqw5iiynh" path="res://scenes/vfx/dust.tscn" id="3_wkc5e"]
 [ext_resource type="AudioStream" uid="uid://b7h8c6ojbnngv" path="res://assets/sfx/Outdoor_Ambiance.mp3" id="4_2at3o"]
 [ext_resource type="PackedScene" uid="uid://d3803gshr36jf" path="res://scenes/vfx/wind.tscn" id="4_hm7t0"]
@@ -11,13 +11,11 @@
 script = ExtResource("1_ifxnn")
 
 [node name="player" parent="." instance=ExtResource("1_pc3h1")]
-z_index = 1
 
 [node name="wind" parent="player" instance=ExtResource("4_hm7t0")]
 
 [node name="dust" parent="player" instance=ExtResource("3_wkc5e")]
 position = Vector2(0, 0)
-amount = 500
 visibility_rect = Rect2(-501.733, -502.275, 1003.57, 1009.98)
 
 [node name="snow" parent="player" instance=ExtResource("5_wg4kp")]

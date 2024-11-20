@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi8shio6svih0"]
+
+[ext_resource type="Script" path="res://common/weapons/coolbullet.gd" id="1_vhkja"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_14mhj"]
+radius = 2.0
+
+[sub_resource type="Curve" id="Curve_2hpsn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_a80ao"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
+
+[node name="Coolbullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_vhkja")
+initial_speed = 1.0
+target_speed = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_14mhj")
+
+[node name="spritegroup" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="spritegroup"]
+amount = 100
+lifetime = 0.5
+preprocess = 0.5
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 1.5
+gravity = Vector2(0, 50)
+orbit_velocity_min = -50.0
+orbit_velocity_max = 50.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_2hpsn")
+color_ramp = SubResource("Gradient_a80ao")

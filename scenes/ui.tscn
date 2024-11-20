@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bt1bs2s7uhr2m" path="res://assets/ui/mag.png" id="1_bbcrk"]
 [ext_resource type="Texture2D" uid="uid://wh8j60rwp0p1" path="res://assets/stamina meter-small.png" id="1_n6wey"]
-[ext_resource type="Script" path="res://scripts/ui.gd" id="1_oii4i"]
+[ext_resource type="Script" path="res://common/ui/ui.gd" id="1_oii4i"]
 [ext_resource type="Texture2D" uid="uid://bi3tbcefl81pn" path="res://assets/brush.png" id="2_muuvh"]
 [ext_resource type="Texture2D" uid="uid://svhdvaldpg5c" path="res://assets/ui/heart.png" id="3_bqcwi"]
 

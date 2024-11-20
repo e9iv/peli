@@ -19,14 +19,14 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-Global="*res://scripts/singeltons/global.gd"
-InteractionManager="*res://interaction/InteractionManager.tscn"
+Global="*res://common/singeltons/global.gd"
+InteractionManager="*res://common/interaction/InteractionManager.tscn"
 EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 
 [display]
 
 window/vsync/vsync_mode=0
-mouse_cursor/custom_image="res://assets/kenney_cursor-pixel-pack/Tiles/tile_0122.png"
+mouse_cursor/custom_image="res://assets/kenney_cursor-pixel-pack/Tiles/tile_0057.png"
 
 [editor_plugins]
 
@@ -37,7 +37,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 folder_colors={
 "res://addons/": "purple",
 "res://assets/": "red",
-"res://interaction/": "blue",
+"res://common/": "blue",
 "res://scenes/": "green",
 "res://scripts/": "pink"
 }
@@ -106,6 +106,8 @@ inventory={
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
+2d_physics/layer_4="player_hitbox"
+2d_physics/layer_5="enemy"
 
 [rendering]
 

@@ -4,31 +4,20 @@ extends CharacterBody2D
 @export_group("Speed Variables")
 @export var speed: float = 50
 @export var sprintspd: float = 85
-@export_group("Dash Variables")
-@export var dash_speed: float = 200
-@export var dash_duration: float = 0.2
-@export var dash_cooldown: float = 1.0
 @export_group("Accel & Decel")
 @export var accel: float = 1000
 @export var decel: float = 950
 @export_group("Tilt Amount")
 @export var tilt_amount: float = 0.1
-@export_group("Health")
-@export var max_health : float = 100.0
-@export var current_health = max_health
-@onready var health_bar: TextureProgressBar = $ui/TextureProgressBar3
 
 # References
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var sfx: AudioStreamPlayer2D = $sfx/sfx
-@onready var dashsfx: AudioStreamPlayer2D = $sfx/dashsfx
+@onready var gun: Sprite2D = $weapons/ak/gun
 @export var sfx_footsteps : AudioStreamRandomizer
+@onready var ak: Node2D = $weapons/ak
 
-# Variables for dash and movement
-var dash_timer: float = 0.0
-var dash_cooldown_timer: float = 0.0
-var dash_direction: Vector2 = Vector2.ZERO
-var is_dashing: bool = false
+
 
 var footsteps_frames : Array = [1,5]
 
@@ -36,30 +25,26 @@ func _ready() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 0, 0)
 	tween.tween_property(self, "modulate:a", 1, 1)
-	update_health_bar()
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
-	#Flip sprite based on the mouse position
-	if mouse_pos.x < position.x:
+	ak.look_at(mouse_pos)
+	if mouse_pos.x < position.x - 1:
 		sprite.flip_h = true
-	elif mouse_pos.x > position.x:
+		gun.position = Vector2(-3, -2)
+		gun.flip_v = true
+		for child in gun.get_children():
+			child.flip_v = true
+	elif mouse_pos.x > position.x + 1:
 		sprite.flip_h = false
+		gun.position = Vector2(-3, 0)
+		gun.flip_v = false
+		for child in gun.get_children():
+			child.flip_v = false
 
 func _physics_process(delta: float) -> void:
-	# Handle dashing
-	if is_dashing:
-		velocity = dash_direction * dash_speed
-		dash_timer -= delta
-		if dash_timer <= 0.0:
-			is_dashing = false
-	else:
-		# Normal movement
-		handle_movement(delta)
-
-	# Cooldown logic
-	if dash_cooldown_timer > 0.0:
-		dash_cooldown_timer -= delta
+	# Normal movement
+	handle_movement(delta)
 
 	# Apply velocity and move
 	move_and_slide()
@@ -67,10 +52,6 @@ func _physics_process(delta: float) -> void:
 	# Update animations and tilt
 	handle_animation()
 	handle_tilt(delta)
-
-func update_health_bar():
-	health_bar.max_value = max_health  # Ensure the max_value is set
-	health_bar.value = current_health
 
 func handle_movement(delta: float) -> void:
 	var direction: Vector2 = Vector2.ZERO
@@ -92,24 +73,8 @@ func handle_movement(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, decel * delta)
 
-	# Check for dash input
-	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0.0:
-		start_dash(direction)
-		load_sfx(sfx_footsteps)
-		sfx.play()
-
-func start_dash(direction: Vector2) -> void:
-	if direction != Vector2.ZERO:
-		is_dashing = true
-		dashsfx.play()
-		dash_timer = dash_duration
-		dash_cooldown_timer = dash_cooldown
-		dash_direction = direction
-
 func handle_animation() -> void:
-	if is_dashing:
-		pass
-	elif velocity.length() > 0.0:
+	if velocity.length() > 0.0:
 		sprite.play("gun_run")
 	else:
 		sprite.play("gun_idle")
