@@ -14,10 +14,10 @@ extends Node2D
 @export var out_of_ammo : AudioStreamPlayer2D
 
 @export_group("Ammo variables")
-@export var max_ammo_in_mag : int  # Maximum bullets in the clip
+@export var full_mag : int  # Maximum bullets in the clip
 @export var total_ammo : int       # Total reserve ammo
 
-var current_mag = max_ammo_in_mag  # Ammo in the current clip
+var current_ammo_in_mag = full_mag  # Ammo in the current clip
 var can_shoot = true
 var is_reloading = false
 
@@ -25,8 +25,7 @@ func shoot():
 	if is_reloading:
 		print("Can't shoot while reloading!")
 		return
-	if current_mag <= 0:
-		
+	if current_ammo_in_mag <= 0:
 		print("Out of ammo! Reload to shoot.")
 		return
 	if can_shoot:
@@ -47,8 +46,8 @@ func shoot():
 				)
 			get_tree().root.call_deferred("add_child", new_bullet)
 			fire_sound.play()
-			current_mag -= 1
-			print(current_mag)
+			current_ammo_in_mag -= 1
+			print(current_ammo_in_mag)
 		await get_tree().create_timer(1 / fire_rate).timeout
 		can_shoot = true
 
@@ -57,7 +56,7 @@ func reload():
 		print("Already reloading!")
 		return
 
-	if current_mag == max_ammo_in_mag:
+	if current_ammo_in_mag == full_mag:
 		print("Clip is already full!")
 		return
 
@@ -72,11 +71,11 @@ func reload():
 	# Simulate reload delay
 	await get_tree().create_timer(2.0).timeout # 2-second reload time
 
-	var ammo_needed = max_ammo_in_mag - current_mag
+	var ammo_needed = full_mag - current_ammo_in_mag
 	var ammo_to_reload = min(ammo_needed, total_ammo)
 
-	current_mag += ammo_to_reload
+	current_ammo_in_mag += ammo_to_reload
 	total_ammo -= ammo_to_reload
 
 	is_reloading = false
-	print("Reload complete! Ammo in clip:", current_mag, "Reserve ammo:", total_ammo)
+	print("Reload complete! Ammo in clip:", current_ammo_in_mag, "Reserve ammo:", total_ammo)

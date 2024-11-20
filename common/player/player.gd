@@ -17,8 +17,6 @@ extends CharacterBody2D
 @export var sfx_footsteps : AudioStreamRandomizer
 @onready var ak: Node2D = $weapons/ak
 
-
-
 var footsteps_frames : Array = [1,5]
 
 func _ready() -> void:

@@ -235,7 +235,7 @@ barrel_origin = NodePath("barrel")
 sprite = NodePath("gun")
 fire_sound = NodePath("../../sfx/gunshot")
 reload_sound = NodePath("../../sfx/reload")
-max_ammo_in_mag = 30
+full_mag = 30
 total_ammo = 90
 
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
