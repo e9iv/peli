@@ -15,7 +15,6 @@ var pos_y : int
 @onready var tween : Tween = get_tree().create_tween()
 
 func _ready() -> void:
-	set_process(true)
 	Global.camera = self
 	randomize()
 
@@ -33,25 +32,18 @@ func _process(delta: float) -> void:
 	
 	position = target_pos
 	
-	offset = Vector2(randf_range(-1, 1) * shake_amount, randf_range(-1, 1) * shake_amount)
+	if shake_amount > 0:
+		offset = Vector2(randf_range(-1, 1) * shake_amount, randf_range(-1, 1) * shake_amount)
+	else:
+		offset = default_offset
+	return
 
 func shake(time: float, amount: float):
 		timer.wait_time = time
 		shake_amount = amount
-		set_process(true)
 		timer.start()
 
-
-func shake_camera():
-	camera.offset = Vector2(randf() * 10 - 5, randf() * 10 - 5)  # Random shake
-	await get_tree().create_timer(0.1).timeout
-	camera.offset = Vector2.ZERO  # Reset
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		target_distance = center_pos.distance_to(get_local_mouse_position()) / 2
-
 func _on_timer_timeout() -> void:
-	var tween = get_tree().create_tween()
-	set_process(false)
+	shake_amount = 0
 	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	

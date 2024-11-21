@@ -33,8 +33,8 @@
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/sfx/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/sfx/Retro Swooosh 07.wav" id="35_id2wu"]
+[ext_resource type="PackedScene" uid="uid://bi8shio6svih0" path="res://common/weapons/coolbullet.tscn" id="36_8eul8"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/sfx/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
-[ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_qpi83"]
 [ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/sfx/weaponsfx/reload.wav" id="37_3ukmx"]
 [ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/ak2.png" id="37_45hnu"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/ak-outline.png" id="38_3slrs"]
@@ -201,7 +201,6 @@ position_smoothing_speed = 2.0
 script = ExtResource("30_bb0hi")
 
 [node name="Timer" type="Timer" parent="Camera2D"]
-one_shot = true
 
 [node name="sfx" type="Node" parent="."]
 
@@ -230,13 +229,15 @@ bus = &"sfx"
 [node name="ak" type="Node2D" parent="weapons" node_paths=PackedStringArray("barrel_origin", "sprite", "fire_sound", "reload_sound")]
 z_index = 2
 script = ExtResource("35_hq2op")
-bullet = ExtResource("36_qpi83")
+bullet = ExtResource("36_8eul8")
 barrel_origin = NodePath("barrel")
 sprite = NodePath("gun")
 fire_sound = NodePath("../../sfx/gunshot")
 reload_sound = NodePath("../../sfx/reload")
 full_mag = 30
 total_ammo = 90
+duration = 0.5
+intensity = 0.5
 
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
 position = Vector2(-3, 0)

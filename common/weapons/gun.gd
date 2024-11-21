@@ -17,6 +17,10 @@ extends Node2D
 @export var full_mag : int  # Maximum bullets in the clip
 @export var total_ammo : int       # Total reserve ammo
 
+@export_group("Camera Shake Values")
+@export var duration : float
+@export var intensity : float
+
 var current_ammo_in_mag = full_mag  # Ammo in the current clip
 var can_shoot = true
 var is_reloading = false
@@ -46,6 +50,7 @@ func shoot():
 				)
 			get_tree().root.call_deferred("add_child", new_bullet)
 			fire_sound.play()
+			Global.camera.shake(duration, intensity)
 			current_ammo_in_mag -= 1
 			print(current_ammo_in_mag)
 		await get_tree().create_timer(1 / fire_rate).timeout
