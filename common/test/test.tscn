@@ -1,63 +1,38 @@
-[gd_scene load_steps=19 format=3 uid="uid://dyol8vq3v3wt1"]
+[gd_scene load_steps=10 format=3 uid="uid://dyol8vq3v3wt1"]
 
 [ext_resource type="Script" path="res://common/test/test.gd" id="1_up7la"]
-[ext_resource type="Texture2D" uid="uid://bo1ryxv74hsaf" path="res://assets/sprites/player/idle/basic_idle_01.png" id="2_hkk8i"]
-[ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/player/idle/basic_idle_02.png" id="3_f3ks5"]
 [ext_resource type="PackedScene" uid="uid://dgy10sv1cs5i6" path="res://common/interaction/interaction-area/interaction_area.tscn" id="3_i72vl"]
-[ext_resource type="FontFile" uid="uid://b6qd31q3ljoal" path="res://assets/misc/fonts/monogram-extended-italic.ttf" id="4_rwc83"]
-[ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/player/idle/basic_idle_04.png" id="5_bihju"]
-[ext_resource type="FontFile" uid="uid://df63stwd37cxt" path="res://assets/misc/fonts/monogram-extended.ttf" id="7_04gnt"]
-[ext_resource type="AudioStream" uid="uid://dv4rcdsl13c85" path="res://assets/audio/au.wav" id="8_fdcy3"]
-[ext_resource type="AudioStream" uid="uid://cedpyld0i8liv" path="res://assets/audio/au1.wav" id="9_dgyob"]
-[ext_resource type="AudioStream" uid="uid://45rrb4xr0mye" path="res://assets/audio/au2.wav" id="10_hkuqw"]
-[ext_resource type="AudioStream" uid="uid://doay3k3hy26b7" path="res://assets/audio/au4.wav" id="11_gsjuj"]
-[ext_resource type="AudioStream" uid="uid://bh2hwups2bkfh" path="res://assets/audio/hello_there.wav" id="12_7w4mh"]
-[ext_resource type="AudioStream" uid="uid://c2my6r0x4r6d2" path="res://assets/audio/weaponsfx/hawk-tuah_SRaUp2L.mp3" id="12_fpw3n"]
-[ext_resource type="AudioStream" uid="uid://buhpafgubgurs" path="res://assets/audio/tuco-get-out.mp3" id="13_0knqt"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1y81u"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_hkk8i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_f3ks5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_bihju")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://f8pw2w2sf0a4" path="res://assets/sprites/weapons/ak2-pickup.png" id="3_k3uuv"]
+[ext_resource type="Shader" path="res://common/shaders/item.gdshader" id="3_vmara"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jiy8b"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvu50"]
-size = Vector2(8, 9)
+[sub_resource type="Gradient" id="Gradient_3oh42"]
+offsets = PackedFloat32Array(0, 0.516854, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0.707865, 0.707865, 0.707865, 0.707865)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tylmo"]
-random_pitch = 3.1
-streams_count = 6
-stream_0/stream = ExtResource("8_fdcy3")
-stream_1/stream = ExtResource("9_dgyob")
-stream_2/stream = ExtResource("10_hkuqw")
-stream_3/stream = ExtResource("11_gsjuj")
-stream_4/stream = ExtResource("12_fpw3n")
-stream_5/stream = ExtResource("13_0knqt")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0qn7q"]
+gradient = SubResource("Gradient_3oh42")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esvgf"]
+shader = ExtResource("3_vmara")
+shader_parameter/size_effect = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/pause_duration = 0.5
+shader_parameter/texture_size = Vector2(10, 6)
+shader_parameter/vertical_gradient = SubResource("GradientTexture2D_0qn7q")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2mo4"]
+size = Vector2(8, 4)
 
 [node name="test" type="CharacterBody2D"]
 z_index = 21
-collision_layer = 5
-collision_mask = 4
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("1_up7la")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_1y81u")
-frame_progress = 0.190587
-flip_h = true
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_i72vl")]
 action_name = "pickup"
@@ -65,34 +40,10 @@ action_name = "pickup"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_jiy8b")
 
-[node name="Label" type="Label" parent="."]
-visible = false
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-offset_left = -33.0
-offset_top = -25.0
-offset_right = 39.0
-offset_bottom = -2.0
-theme_override_fonts/font = ExtResource("4_rwc83")
-text = "Hello There!"
+material = SubResource("ShaderMaterial_esvgf")
+texture = ExtResource("3_k3uuv")
 
-[node name="Label2" type="Label" parent="."]
-visible = false
-texture_filter = 1
-offset_left = -23.0
-offset_top = -25.0
-offset_right = 49.0
-offset_bottom = -2.0
-theme_override_fonts/font = ExtResource("7_04gnt")
-text = "OUCH!!"
-
-[node name="hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_fvu50")
-debug_color = Color(0.891592, 0, 0.161197, 0.42)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-23, -25)
-stream = SubResource("AudioStreamRandomizer_tylmo")
-
-[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_7w4mh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r2mo4")

@@ -9,20 +9,21 @@ extends CharacterBody2D
 @export var decel: float = 950
 @export_group("Tilt Amount")
 @export var tilt_amount: float = 0.1
+@export_group("Health Variables")
+@export var health : int = 25
+@export var health_bar : TextureProgressBar
+var current_health = health
 
 # References
+@export_group("References")
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var sfx: AudioStreamPlayer2D = $sfx/sfx
 @onready var gun: Sprite2D = $weapons/ak/gun
 @export var sfx_footsteps : AudioStreamRandomizer
 @onready var ak: Node2D = $weapons/ak
 
-var footsteps_frames : Array = [1,5]
 
-func _ready() -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 0, 0)
-	tween.tween_property(self, "modulate:a", 1, 1)
+var footsteps_frames : Array = [1,5]
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()

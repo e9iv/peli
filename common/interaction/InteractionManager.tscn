@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f8rb71yk4ykp"]
 
 [ext_resource type="Script" path="res://common/interaction/interaction_manager.gd" id="1_te07s"]
-[ext_resource type="Texture2D" uid="uid://bv51kicrgnfhu" path="res://assets/sprites/inputprompts/Tiles (White)/tile_0359.png" id="2_v3u3f"]
+[ext_resource type="Texture2D" uid="uid://bv51kicrgnfhu" path="res://assets/ui/inputprompts/Tiles (White)/tile_0359.png" id="2_v3u3f"]
 [ext_resource type="FontFile" uid="uid://df63stwd37cxt" path="res://assets/misc/fonts/monogram-extended.ttf" id="3_ei1bw"]
 
 [node name="InteractionManager" type="Node2D"]
@@ -31,6 +31,5 @@ z_index = 20
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ei1bw")
-text = "to interact"
 horizontal_alignment = 1
 vertical_alignment = 1

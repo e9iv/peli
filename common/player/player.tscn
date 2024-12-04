@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=44 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/audio/footsteps/Concrete 1.wav" id="2_bjdqa"]
@@ -33,11 +33,12 @@
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/audio/Retro Swooosh 07.wav" id="35_id2wu"]
-[ext_resource type="PackedScene" uid="uid://bi8shio6svih0" path="res://common/weapons/coolbullet.tscn" id="36_8eul8"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/audio/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
+[ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_p35gg"]
 [ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/audio/weaponsfx/reload.wav" id="37_3ukmx"]
 [ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/weapons/ak2.png" id="37_45hnu"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/weapons/ak-outline.png" id="38_3slrs"]
+[ext_resource type="Texture2D" uid="uid://bj355vyo0gwyi" path="res://assets/sprites/weapons/ak_normal-map3.png" id="38_uxf01"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
 random_pitch = 1.47
@@ -156,6 +157,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhb4"]
 size = Vector2(8, 9)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_ifh75"]
+diffuse_texture = ExtResource("37_45hnu")
+normal_texture = ExtResource("38_uxf01")
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 texture_filter = 1
@@ -229,19 +234,19 @@ bus = &"sfx"
 [node name="ak" type="Node2D" parent="weapons" node_paths=PackedStringArray("barrel_origin", "sprite", "fire_sound", "reload_sound")]
 z_index = 2
 script = ExtResource("35_hq2op")
-bullet = ExtResource("36_8eul8")
+bullet = ExtResource("36_p35gg")
 barrel_origin = NodePath("barrel")
 sprite = NodePath("gun")
 fire_sound = NodePath("../../sfx/gunshot")
 reload_sound = NodePath("../../sfx/reload")
 full_mag = 30
-total_ammo = 90
+reserve_ammo = 90
 duration = 0.3
-intensity = 0.15
+intensity = 0.3
 
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
 position = Vector2(-3, 0)
-texture = ExtResource("37_45hnu")
+texture = SubResource("CanvasTexture_ifh75")
 offset = Vector2(4, 1)
 
 [node name="outline" type="Sprite2D" parent="weapons/ak/gun"]

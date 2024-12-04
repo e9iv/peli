@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjd2pnd1x1jsx"]
+[gd_scene load_steps=11 format=3 uid="uid://bjd2pnd1x1jsx"]
 
 [ext_resource type="Script" path="res://common/main/main.gd" id="1_ifxnn"]
 [ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://common/player/player.tscn" id="1_pc3h1"]
@@ -6,15 +6,52 @@
 [ext_resource type="AudioStream" uid="uid://b7h8c6ojbnngv" path="res://assets/audio/Outdoor_Ambiance.mp3" id="4_2at3o"]
 [ext_resource type="PackedScene" uid="uid://d3803gshr36jf" path="res://common/particles/wind.tscn" id="4_hm7t0"]
 [ext_resource type="PackedScene" uid="uid://4lo6gk2u2yf8" path="res://common/particles/snow.tscn" id="5_wg4kp"]
+[ext_resource type="PackedScene" uid="uid://dyol8vq3v3wt1" path="res://common/test/test.tscn" id="7_3ui18"]
+
+[sub_resource type="Environment" id="Environment_8qa0w"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.65
+adjustment_brightness = 0.01
+
+[sub_resource type="Gradient" id="Gradient_23b4r"]
+offsets = PackedFloat32Array(0, 0.654867)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3pf2q"]
+gradient = SubResource("Gradient_23b4r")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.509317, 0.531056)
+fill_to = Vector2(0, 0)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ifxnn")
 
+[node name="map" type="Node2D" parent="."]
+position = Vector2(-384, -216)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="map"]
+visible = false
+color = Color(1, 0.96, 0.85, 1)
+energy = 0.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="map"]
+environment = SubResource("Environment_8qa0w")
+
+[node name="PointLight2D" type="PointLight2D" parent="map"]
+visible = false
+position = Vector2(5, -4)
+texture = SubResource("GradientTexture2D_3pf2q")
+
 [node name="player" parent="." instance=ExtResource("1_pc3h1")]
+position = Vector2(-384, -216)
 
 [node name="wind" parent="player" instance=ExtResource("4_hm7t0")]
+visible = false
 
 [node name="dust" parent="player" instance=ExtResource("3_wkc5e")]
+visible = false
 position = Vector2(0, 0)
 visibility_rect = Rect2(-501.733, -502.275, 1003.57, 1009.98)
 
@@ -29,8 +66,6 @@ stream = ExtResource("4_2at3o")
 autoplay = true
 parameters/looping = true
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(1, 0.96, 0.85, 1)
-energy = 0.5
-
-[node name="map" type="Node2D" parent="."]
+[node name="test" parent="." instance=ExtResource("7_3ui18")]
+visible = false
+position = Vector2(-318, -216)

@@ -7,6 +7,7 @@ extends Node2D
 @export_range(0, 20) var fire_rate : float = 2.0
 @export var barrel_origin: Node2D
 @export var sprite: Sprite2D
+@export var ammo_bar: TextureProgressBar
 
 @export_group("Sounds")
 @export var fire_sound : AudioStreamPlayer2D
@@ -15,7 +16,7 @@ extends Node2D
 
 @export_group("Ammo variables")
 @export var full_mag : int  # Maximum bullets in the clip
-@export var total_ammo : int       # Total reserve ammo
+@export var reserve_ammo : int       # Total reserve ammo
 
 @export_group("Camera Shake Values")
 @export var duration : float
@@ -24,6 +25,9 @@ extends Node2D
 var current_ammo_in_mag = full_mag  # Ammo in the current clip
 var can_shoot = true
 var is_reloading = false
+
+func _ready():
+	update_ammo_bar()
 
 func shoot():
 	if is_reloading:
@@ -65,7 +69,7 @@ func reload():
 		print("Clip is already full!")
 		return
 
-	if total_ammo <= 0:
+	if reserve_ammo <= 0:
 		print("No reserve ammo left!")
 		return
 
@@ -77,10 +81,15 @@ func reload():
 	await get_tree().create_timer(2.0).timeout # 2-second reload time
 
 	var ammo_needed = full_mag - current_ammo_in_mag
-	var ammo_to_reload = min(ammo_needed, total_ammo)
+	var ammo_to_reload = min(ammo_needed, reserve_ammo)
 
 	current_ammo_in_mag += ammo_to_reload
-	total_ammo -= ammo_to_reload
+	reserve_ammo -= ammo_to_reload
 
 	is_reloading = false
-	print("Reload complete! Ammo in clip:", current_ammo_in_mag, "Reserve ammo:", total_ammo)
+	print("Reload complete! Ammo in clip:", current_ammo_in_mag, "Reserve ammo:", reserve_ammo)
+
+func update_ammo_bar():
+	# Update the TextureProgressBar to reflect current ammo
+	ammo_bar.max_value = full_mag  # Ensure the max_value is set
+	ammo_bar.value = current_ammo_in_mag

@@ -26,7 +26,6 @@ EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.g
 [display]
 
 window/vsync/vsync_mode=0
-mouse_cursor/custom_image="res://assets/kenney_cursor-pixel-pack/Tiles/tile_0057.png"
 
 [editor_plugins]
 
@@ -39,6 +38,10 @@ folder_colors={
 "res://assets/": "red",
 "res://common/": "blue"
 }
+
+[gui]
+
+theme/custom_font="res://assets/misc/fonts/monogram-extended.ttf"
 
 [input]
 
@@ -103,10 +106,11 @@ inventory={
 
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
-2d_physics/layer_3="enemies"
+2d_physics/layer_3="enemy"
 2d_physics/layer_4="player_hitbox"
-2d_physics/layer_5="enemy"
+2d_physics/layer_5="item"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+viewport/hdr_2d=true
