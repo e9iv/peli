@@ -11,12 +11,11 @@
 [sub_resource type="Environment" id="Environment_8qa0w"]
 background_mode = 3
 glow_enabled = true
-glow_bloom = 0.65
+glow_bloom = 0.3
 adjustment_brightness = 0.01
 
 [sub_resource type="Gradient" id="Gradient_23b4r"]
-offsets = PackedFloat32Array(0, 0.654867)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3pf2q"]
 gradient = SubResource("Gradient_23b4r")
@@ -40,18 +39,14 @@ energy = 0.5
 environment = SubResource("Environment_8qa0w")
 
 [node name="PointLight2D" type="PointLight2D" parent="map"]
-visible = false
-position = Vector2(5, -4)
 texture = SubResource("GradientTexture2D_3pf2q")
 
 [node name="player" parent="." instance=ExtResource("1_pc3h1")]
 position = Vector2(-384, -216)
 
 [node name="wind" parent="player" instance=ExtResource("4_hm7t0")]
-visible = false
 
 [node name="dust" parent="player" instance=ExtResource("3_wkc5e")]
-visible = false
 position = Vector2(0, 0)
 visibility_rect = Rect2(-501.733, -502.275, 1003.57, 1009.98)
 

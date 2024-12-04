@@ -33,10 +33,10 @@
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/audio/Retro Swooosh 07.wav" id="35_id2wu"]
+[ext_resource type="PackedScene" uid="uid://c0gr4b30s7lxb" path="res://common/weapons/bullets/poison_bullet.tscn" id="36_3xyer"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/audio/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
-[ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_p35gg"]
 [ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/audio/weaponsfx/reload.wav" id="37_3ukmx"]
-[ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/weapons/ak2.png" id="37_45hnu"]
+[ext_resource type="Texture2D" uid="uid://be0ku3ft7ec63" path="res://assets/sprites/weapons/ak1.png" id="37_moh57"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/weapons/ak-outline.png" id="38_3slrs"]
 [ext_resource type="Texture2D" uid="uid://bj355vyo0gwyi" path="res://assets/sprites/weapons/ak_normal-map3.png" id="38_uxf01"]
 
@@ -158,8 +158,9 @@ animations = [{
 size = Vector2(8, 9)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ifh75"]
-diffuse_texture = ExtResource("37_45hnu")
+diffuse_texture = ExtResource("37_moh57")
 normal_texture = ExtResource("38_uxf01")
+texture_filter = 1
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -234,7 +235,7 @@ bus = &"sfx"
 [node name="ak" type="Node2D" parent="weapons" node_paths=PackedStringArray("barrel_origin", "sprite", "fire_sound", "reload_sound")]
 z_index = 2
 script = ExtResource("35_hq2op")
-bullet = ExtResource("36_p35gg")
+bullet = ExtResource("36_3xyer")
 barrel_origin = NodePath("barrel")
 sprite = NodePath("gun")
 fire_sound = NodePath("../../sfx/gunshot")

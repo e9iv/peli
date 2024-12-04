@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c5lv87i4rghhi"
+path="res://.godot/imported/poison_bullet.aseprite-74271ab78e9465e1ace506291b678a44.res"
+
+[deps]
+
+source_file="res://assets/sprites/bullets/poison_bullet.aseprite"
+dest_files=["res://.godot/imported/poison_bullet.aseprite-74271ab78e9465e1ace506291b678a44.res"]
+
+[params]
+

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bi8shio6svih0"]
 
-[ext_resource type="Script" path="res://common/weapons/coolbullet.gd" id="1_vhkja"]
+[ext_resource type="Script" path="res://common/weapons/bullets/coolbullet.gd" id="1_vhkja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_14mhj"]
 radius = 2.0
