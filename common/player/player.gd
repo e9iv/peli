@@ -83,7 +83,6 @@ func handle_animation() -> void:
 		sprite.flip_h = true
 	elif velocity.x > 0:
 		sprite.flip_h = false
-
 func handle_tilt(delta: float) -> void:
 	var target_tilt = tilt_amount * velocity.x / speed
 	self.rotation = lerp(self.rotation, target_tilt, 0.1)

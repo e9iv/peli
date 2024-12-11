@@ -1,13 +1,18 @@
 class_name Gun
 extends Node2D
 
+@export_group("Bullet variables")
 @export var bullet: PackedScene
 @export var bullet_count : int = 1
+@export var barrel_origin: Node2D
+@export_group("Weapon Behavior")
 @export_range(0, 360) var arc : float = 0
 @export_range(0, 20) var fire_rate : float = 2.0
-@export var barrel_origin: Node2D
-@export var sprite: Sprite2D
+
+@export_group("Visuals")
 @export var ammo_bar: TextureProgressBar
+@export var flash: PointLight2D
+@export var muzzleflash: AnimationPlayer
 
 @export_group("Sounds")
 @export var fire_sound : AudioStreamPlayer2D
@@ -54,6 +59,7 @@ func shoot():
 				)
 			get_tree().root.call_deferred("add_child", new_bullet)
 			fire_sound.play()
+			muzzleflash.play("muzzleflash")
 			Global.camera.shake(duration, intensity)
 			current_ammo_in_mag -= 1
 			print(current_ammo_in_mag)

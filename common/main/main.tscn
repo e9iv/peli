@@ -45,9 +45,11 @@ texture = SubResource("GradientTexture2D_3pf2q")
 position = Vector2(-384, -216)
 
 [node name="wind" parent="player" instance=ExtResource("4_hm7t0")]
+emitting = false
 
 [node name="dust" parent="player" instance=ExtResource("3_wkc5e")]
 position = Vector2(0, 0)
+emitting = false
 visibility_rect = Rect2(-501.733, -502.275, 1003.57, 1009.98)
 
 [node name="snow" parent="player" instance=ExtResource("5_wg4kp")]

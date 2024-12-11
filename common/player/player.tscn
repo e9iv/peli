@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=50 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/audio/footsteps/Concrete 1.wav" id="2_bjdqa"]
@@ -33,12 +33,13 @@
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/audio/Retro Swooosh 07.wav" id="35_id2wu"]
-[ext_resource type="PackedScene" uid="uid://c0gr4b30s7lxb" path="res://common/weapons/bullets/poison_bullet.tscn" id="36_3xyer"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/audio/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
+[ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_m30g4"]
 [ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/audio/weaponsfx/reload.wav" id="37_3ukmx"]
-[ext_resource type="Texture2D" uid="uid://be0ku3ft7ec63" path="res://assets/sprites/weapons/ak1.png" id="37_moh57"]
+[ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/weapons/ak2.png" id="37_yj8jb"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/weapons/ak-outline.png" id="38_3slrs"]
 [ext_resource type="Texture2D" uid="uid://bj355vyo0gwyi" path="res://assets/sprites/weapons/ak_normal-map3.png" id="38_uxf01"]
+[ext_resource type="Texture2D" uid="uid://btjccop7g58uu" path="res://assets/sprites/muzzleflash/m_1.png" id="40_xyp07"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
 random_pitch = 1.47
@@ -157,10 +158,177 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhb4"]
 size = Vector2(8, 9)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_ifh75"]
-diffuse_texture = ExtResource("37_moh57")
+[sub_resource type="CanvasTexture" id="CanvasTexture_vpoi1"]
+diffuse_texture = ExtResource("37_yj8jb")
 normal_texture = ExtResource("38_uxf01")
-texture_filter = 1
+
+[sub_resource type="Gradient" id="Gradient_4vvxu"]
+offsets = PackedFloat32Array(0, 0.383117, 0.675325, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.529412, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u6yim"]
+gradient = SubResource("Gradient_4vvxu")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.509174, 0.509174)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_obmb0"]
+resource_name = "muzzleflash"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(0.025, 0.025), Vector2(0.01, 0.01)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(3, 0), Vector2(1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_aywd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.025, 0.025)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17uxp"]
+_data = {
+"RESET": SubResource("Animation_aywd4"),
+"muzzleflash": SubResource("Animation_obmb0")
+}
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -232,12 +400,14 @@ bus = &"sfx"
 
 [node name="weapons" type="Node2D" parent="."]
 
-[node name="ak" type="Node2D" parent="weapons" node_paths=PackedStringArray("barrel_origin", "sprite", "fire_sound", "reload_sound")]
+[node name="ak" type="Node2D" parent="weapons" node_paths=PackedStringArray("barrel_origin", "flash", "muzzleflash", "fire_sound", "reload_sound")]
 z_index = 2
 script = ExtResource("35_hq2op")
-bullet = ExtResource("36_3xyer")
+bullet = ExtResource("36_m30g4")
 barrel_origin = NodePath("barrel")
-sprite = NodePath("gun")
+fire_rate = 4.0
+flash = NodePath("barrel/PointLight2D")
+muzzleflash = NodePath("barrel/AnimationPlayer")
 fire_sound = NodePath("../../sfx/gunshot")
 reload_sound = NodePath("../../sfx/reload")
 full_mag = 30
@@ -247,7 +417,7 @@ intensity = 0.3
 
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
 position = Vector2(-3, 0)
-texture = SubResource("CanvasTexture_ifh75")
+texture = SubResource("CanvasTexture_vpoi1")
 offset = Vector2(4, 1)
 
 [node name="outline" type="Sprite2D" parent="weapons/ak/gun"]
@@ -257,6 +427,30 @@ offset = Vector2(4, 1)
 
 [node name="barrel" type="Node2D" parent="weapons/ak"]
 position = Vector2(6, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="weapons/ak/barrel"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+texture_filter = 1
+position = Vector2(1, 0)
+scale = Vector2(0.240004, 0.199999)
+color = Color(1, 0.776471, 0.294118, 1)
+energy = 16.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_u6yim")
+
+[node name="Sprite2D" type="Sprite2D" parent="weapons/ak/barrel"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(3, 0)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("40_xyp07")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="weapons/ak/barrel"]
+libraries = {
+"": SubResource("AnimationLibrary_17uxp")
+}
 
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

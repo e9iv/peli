@@ -33,7 +33,7 @@ damage = 3
 shape = SubResource("CircleShape2D_ydh77")
 
 [node name="spritegroup" type="Node2D" parent="."]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.15, 0.15)
 
 [node name="Sprite2D" type="Sprite2D" parent="spritegroup"]
 texture = ExtResource("3_l1l0j")
