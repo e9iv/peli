@@ -11,8 +11,7 @@ extends Node2D
 
 @export_group("Visuals")
 @export var ammo_bar: TextureProgressBar
-@export var flash: PointLight2D
-@export var muzzleflash: AnimationPlayer
+@export var anim: AnimationPlayer
 
 @export_group("Sounds")
 @export var fire_sound : AudioStreamPlayer2D
@@ -59,7 +58,7 @@ func shoot():
 				)
 			get_tree().root.call_deferred("add_child", new_bullet)
 			fire_sound.play()
-			muzzleflash.play("muzzleflash")
+			anim.play("muzzleflash")
 			Global.camera.shake(duration, intensity)
 			current_ammo_in_mag -= 1
 			print(current_ammo_in_mag)
@@ -81,6 +80,7 @@ func reload():
 
 	is_reloading = true
 	reload_sound.play()
+	anim.play("reload")
 	print("Reloading...")
 
 	# Simulate reload delay
