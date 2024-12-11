@@ -74,9 +74,9 @@ func handle_movement(delta: float) -> void:
 
 func handle_animation() -> void:
 	if velocity.length() > 0.0:
-		sprite.play("gun_run")
+		sprite.play("run")
 	else:
-		sprite.play("gun_idle")
+		sprite.play("idle")
 
 	# Flip sprite based on velocity direction
 	if velocity.x < 0:
@@ -95,6 +95,6 @@ func load_sfx(sfx_to_load):
 
 
 func _on_sprite_frame_changed() -> void:
-	if sprite.animation == "gun_idle": return
+	if sprite.animation == "idle": return
 	load_sfx(sfx_footsteps)
 	if sprite.frame in footsteps_frames: sfx.play()

@@ -1,25 +1,11 @@
-[gd_scene load_steps=49 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=35 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/audio/footsteps/Concrete 1.wav" id="2_bjdqa"]
 [ext_resource type="AudioStream" uid="uid://dglvfkvhr6u" path="res://assets/audio/footsteps/Concrete 2.wav" id="3_ihkc4"]
-[ext_resource type="Texture2D" uid="uid://dtpxy3bs5x7kn" path="res://assets/sprites/player/idle/nohands_idle_01.png" id="4_3q5w2"]
-[ext_resource type="Texture2D" uid="uid://tiw473qapf6v" path="res://assets/sprites/player/idle/nohands_idle_02.png" id="5_3d2be"]
-[ext_resource type="Texture2D" uid="uid://bkwq67f3vigbd" path="res://assets/sprites/player/idle/nohands_idle_04.png" id="6_ue105"]
-[ext_resource type="Texture2D" uid="uid://6ibdbtqdkvc2" path="res://assets/sprites/player/idle/backpack_idle_01.png" id="7_y7wj2"]
-[ext_resource type="Texture2D" uid="uid://2jrw34s8n3do" path="res://assets/sprites/player/idle/backpack_idle_02.png" id="8_r67s5"]
-[ext_resource type="Texture2D" uid="uid://b2p4yy4qjh07k" path="res://assets/sprites/player/idle/backpack_idle_04.png" id="9_5bd1r"]
-[ext_resource type="Texture2D" uid="uid://bwhwsyfo4jmmn" path="res://assets/sprites/player/run/nohands_run_01.png" id="10_tolsk"]
-[ext_resource type="Texture2D" uid="uid://bss5krhh2eago" path="res://assets/sprites/player/run/nohands_run_02.png" id="11_cg4x2"]
-[ext_resource type="Texture2D" uid="uid://3tm25gpyvali" path="res://assets/sprites/player/run/nohands_run_03.png" id="12_m2rtq"]
-[ext_resource type="Texture2D" uid="uid://b8450mwywon4p" path="res://assets/sprites/player/run/nohands_run_04.png" id="13_mu8np"]
-[ext_resource type="Texture2D" uid="uid://begom41mmiwo7" path="res://assets/sprites/player/run/nohands_run_05.png" id="14_olggc"]
-[ext_resource type="Texture2D" uid="uid://b8oc8j4jjb56w" path="res://assets/sprites/player/run/nohands_run_06.png" id="15_0mmtq"]
-[ext_resource type="Texture2D" uid="uid://cww5qxkisw4u7" path="res://assets/sprites/player/run/nohands_run_07.png" id="16_k0rq2"]
-[ext_resource type="Texture2D" uid="uid://du6afsevtmuuu" path="res://assets/sprites/player/run/nohands_run_08.png" id="17_pa78a"]
-[ext_resource type="Texture2D" uid="uid://bo1ryxv74hsaf" path="res://assets/sprites/player/idle/basic_idle_01.png" id="18_ftahi"]
-[ext_resource type="Texture2D" uid="uid://6opet2mq411r" path="res://assets/sprites/player/idle/basic_idle_02.png" id="19_g1efc"]
-[ext_resource type="Texture2D" uid="uid://d3bgicqud768a" path="res://assets/sprites/player/idle/basic_idle_04.png" id="20_khjm2"]
+[ext_resource type="Texture2D" uid="uid://cj1ab16w7xcau" path="res://assets/sprites/player/idle/idle_01.png" id="4_x6g3h"]
+[ext_resource type="Texture2D" uid="uid://ddwd4erq0f2un" path="res://assets/sprites/player/idle/idle_02.png" id="5_6p3kc"]
+[ext_resource type="Texture2D" uid="uid://d0carmw85dv3x" path="res://assets/sprites/player/idle/idle_04.png" id="6_awjh1"]
 [ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/player/run/basic_run_01.png" id="21_hdsps"]
 [ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/player/run/basic_run_02.png" id="22_cabqj"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/player/run/basic_run_03.png" id="23_7kai0"]
@@ -50,78 +36,16 @@ stream_1/stream = ExtResource("3_ihkc4")
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_3q5w2")
+"texture": ExtResource("4_x6g3h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_3d2be")
+"texture": ExtResource("5_6p3kc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ue105")
-}],
-"loop": true,
-"name": &"bp_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_y7wj2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_r67s5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_5bd1r")
-}],
-"loop": true,
-"name": &"gun_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_tolsk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_cg4x2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_m2rtq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_mu8np")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_olggc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_0mmtq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_k0rq2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_pa78a")
-}],
-"loop": true,
-"name": &"gun_run",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_ftahi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_g1efc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_khjm2")
+"texture": ExtResource("6_awjh1")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -167,82 +91,6 @@ use_hdr = true
 fill = 1
 fill_from = Vector2(0.509174, 0.509174)
 fill_to = Vector2(1, 1)
-
-[sub_resource type="Animation" id="Animation_obmb0"]
-resource_name = "muzzleflash"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.01, 0.01), Vector2(0.025, 0.025), Vector2(0.01, 0.01)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 0), Vector2(3, 0), Vector2(1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PointLight2D:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
 
 [sub_resource type="Animation" id="Animation_aywd4"]
 length = 0.001
@@ -331,6 +179,82 @@ tracks/6/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_obmb0"]
+resource_name = "muzzleflash"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(0.025, 0.025), Vector2(0.01, 0.01)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(3, 0), Vector2(1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
 [sub_resource type="Animation" id="Animation_sy5xl"]
 resource_name = "reload"
 length = 2.0
@@ -365,7 +289,7 @@ sfx_footsteps = SubResource("AudioStreamRandomizer_tsha6")
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_pbkpr")
-animation = &"gun_idle"
+animation = &"run"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": true,
