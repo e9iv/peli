@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://jity588pqfxv"
-path="res://.godot/imported/ineedmorebullets.wav-d9e80882736af3f941c513882e8fe364.sample"
+path="res://.godot/imported/ineedmorebullets.wav-0c58ef05fb2762f28a6af19afdb5dc2b.sample"
 
 [deps]
 
-source_file="res://assets/audio/weaponsfx/ineedmorebullets.wav"
-dest_files=["res://.godot/imported/ineedmorebullets.wav-d9e80882736af3f941c513882e8fe364.sample"]
+source_file="res://audio/weaponsfx/ineedmorebullets.wav"
+dest_files=["res://.godot/imported/ineedmorebullets.wav-0c58ef05fb2762f28a6af19afdb5dc2b.sample"]
 
 [params]
 

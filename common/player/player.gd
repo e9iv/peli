@@ -26,20 +26,23 @@ var current_health = health
 var footsteps_frames : Array = [1,5]
 
 func _process(delta: float) -> void:
-	var mouse_pos = get_global_mouse_position()
-	ak.look_at(mouse_pos)
-	if mouse_pos.x < position.x - 1:
-		sprite.flip_h = true
-		gun.position = Vector2(-3, -2)
-		gun.flip_v = true
-		for child in gun.get_children():
-			child.flip_v = true
-	elif mouse_pos.x > position.x + 1:
-		sprite.flip_h = false
-		gun.position = Vector2(-3, 0)
-		gun.flip_v = false
-		for child in gun.get_children():
-			child.flip_v = false
+	if Global.is_reloading == true:
+		return
+	else:
+		var mouse_pos = get_global_mouse_position()
+		ak.look_at(mouse_pos)
+		if mouse_pos.x < position.x - 1:
+			sprite.flip_h = true
+			gun.position = Vector2(-3, -2)
+			gun.flip_v = true
+			for child in gun.get_children():
+				child.flip_v = true
+		elif mouse_pos.x > position.x + 1:
+			sprite.flip_h = false
+			gun.position = Vector2(-3, 0)
+			gun.flip_v = false
+			for child in gun.get_children():
+				child.flip_v = false
 
 func _physics_process(delta: float) -> void:
 	# Normal movement
@@ -78,11 +81,6 @@ func handle_animation() -> void:
 	else:
 		sprite.play("idle")
 
-	# Flip sprite based on velocity direction
-	if velocity.x < 0:
-		sprite.flip_h = true
-	elif velocity.x > 0:
-		sprite.flip_h = false
 func handle_tilt(delta: float) -> void:
 	var target_tilt = tilt_amount * velocity.x / speed
 	self.rotation = lerp(self.rotation, target_tilt, 0.1)
@@ -92,7 +90,6 @@ func load_sfx(sfx_to_load):
 		sfx.stop()
 		
 		sfx.stream = sfx_to_load
-
 
 func _on_sprite_frame_changed() -> void:
 	if sprite.animation == "idle": return

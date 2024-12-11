@@ -1,28 +1,28 @@
-[gd_scene load_steps=35 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=36 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
-[ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://assets/audio/footsteps/Concrete 1.wav" id="2_bjdqa"]
-[ext_resource type="AudioStream" uid="uid://dglvfkvhr6u" path="res://assets/audio/footsteps/Concrete 2.wav" id="3_ihkc4"]
+[ext_resource type="AudioStream" uid="uid://bw2opxhbsgfsj" path="res://audio/footsteps/Concrete 1.wav" id="2_bjdqa"]
+[ext_resource type="AudioStream" uid="uid://dglvfkvhr6u" path="res://audio/footsteps/Concrete 2.wav" id="3_ihkc4"]
 [ext_resource type="Texture2D" uid="uid://cj1ab16w7xcau" path="res://assets/sprites/player/idle/idle_01.png" id="4_x6g3h"]
 [ext_resource type="Texture2D" uid="uid://ddwd4erq0f2un" path="res://assets/sprites/player/idle/idle_02.png" id="5_6p3kc"]
 [ext_resource type="Texture2D" uid="uid://d0carmw85dv3x" path="res://assets/sprites/player/idle/idle_04.png" id="6_awjh1"]
 [ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/player/run/basic_run_01.png" id="21_hdsps"]
 [ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/player/run/basic_run_02.png" id="22_cabqj"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/player/run/basic_run_03.png" id="23_7kai0"]
+[ext_resource type="Texture2D" uid="uid://be0ku3ft7ec63" path="res://assets/sprites/weapons/ak1.png" id="23_36df3"]
+[ext_resource type="Texture2D" uid="uid://bj355vyo0gwyi" path="res://assets/sprites/weapons/ak_normal-map3.png" id="24_sxh74"]
 [ext_resource type="Texture2D" uid="uid://yrh180vdfo0b" path="res://assets/sprites/player/run/basic_run_04.png" id="24_xkjx2"]
 [ext_resource type="Texture2D" uid="uid://c21il6g8opgoh" path="res://assets/sprites/player/run/basic_run_05.png" id="25_q27be"]
 [ext_resource type="Texture2D" uid="uid://dhpq1qvbq26oc" path="res://assets/sprites/player/run/basic_run_06.png" id="26_xakhe"]
 [ext_resource type="Texture2D" uid="uid://cs8txpdoo2paf" path="res://assets/sprites/player/run/basic_run_07.png" id="27_d1pvs"]
 [ext_resource type="Texture2D" uid="uid://bjam5ftmrtuvk" path="res://assets/sprites/player/run/basic_run_08.png" id="28_ilfyv"]
-[ext_resource type="Texture2D" uid="uid://c47k8jjtowvcp" path="res://assets/sprites/player/shadow.png" id="29_lhdrh"]
 [ext_resource type="Script" path="res://common/player/camera.gd" id="30_bb0hi"]
-[ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://assets/audio/weaponsfx/cg1.wav" id="34_myetu"]
+[ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
-[ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://assets/audio/Retro Swooosh 07.wav" id="35_id2wu"]
-[ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://assets/audio/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
+[ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://audio/Retro Swooosh 07.wav" id="35_id2wu"]
+[ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://audio/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
 [ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_m30g4"]
-[ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://assets/audio/weaponsfx/reload.wav" id="37_3ukmx"]
-[ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/weapons/ak2.png" id="37_yj8jb"]
+[ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://audio/weaponsfx/reload.wav" id="37_3ukmx"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/weapons/ak-outline.png" id="38_3slrs"]
 [ext_resource type="Texture2D" uid="uid://btjccop7g58uu" path="res://assets/sprites/muzzleflash/m_1.png" id="40_xyp07"]
 
@@ -79,7 +79,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhb4"]
-size = Vector2(8, 9)
+size = Vector2(8, 11)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cruh5"]
+diffuse_texture = ExtResource("23_36df3")
+normal_texture = ExtResource("24_sxh74")
 
 [sub_resource type="Gradient" id="Gradient_4vvxu"]
 offsets = PackedFloat32Array(0, 0.383117, 0.675325, 1)
@@ -90,7 +94,7 @@ gradient = SubResource("Gradient_4vvxu")
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.509174, 0.509174)
-fill_to = Vector2(1, 1)
+fill_to = Vector2(0.869565, 0.829193)
 
 [sub_resource type="Animation" id="Animation_aywd4"]
 length = 0.001
@@ -169,10 +173,34 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("..:rotation")
+tracks/6/path = NodePath("..:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../gun:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../gun:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -254,21 +282,45 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("..:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_sy5xl"]
 resource_name = "reload"
-length = 2.0
+length = 2.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("..:rotation")
+tracks/0/path = NodePath("../gun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(1.9, 2, 2.03333, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.603831, 0.0]
+"values": [Vector2(-3, 0), Vector2(-3.5, 0), Vector2(-3.5, 1), Vector2(-3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.76667, 1.96667, 2.03333, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.1309, -0.403171, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_17uxp"]
@@ -289,7 +341,7 @@ sfx_footsteps = SubResource("AudioStreamRandomizer_tsha6")
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_pbkpr")
-animation = &"run"
+animation = &"idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": true,
@@ -305,14 +357,8 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": true
 }
 
-[node name="shadow" type="Sprite2D" parent="Sprite2D"]
-z_index = -1
-position = Vector2(0, 4)
-scale = Vector2(1, 0.95)
-texture = ExtResource("29_lhdrh")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_5xhb4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -360,11 +406,11 @@ reload_sound = NodePath("../../sfx/reload")
 full_mag = 30
 reserve_ammo = 90
 duration = 0.3
-intensity = 0.3
+intensity = 0.2
 
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
 position = Vector2(-3, 0)
-texture = ExtResource("37_yj8jb")
+texture = SubResource("CanvasTexture_cruh5")
 offset = Vector2(4, 1)
 
 [node name="outline" type="Sprite2D" parent="weapons/ak/gun"]

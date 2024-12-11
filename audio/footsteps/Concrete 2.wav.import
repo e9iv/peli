@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://br74idmvhbfwf"
-path="res://.godot/imported/reload.wav-0232e7472066a7071e7b596a2d31de28.sample"
+uid="uid://dglvfkvhr6u"
+path="res://.godot/imported/Concrete 2.wav-86f40cc90e169500afcc5e1f73ef8764.sample"
 
 [deps]
 
-source_file="res://assets/audio/weaponsfx/reload.wav"
-dest_files=["res://.godot/imported/reload.wav-0232e7472066a7071e7b596a2d31de28.sample"]
+source_file="res://audio/footsteps/Concrete 2.wav"
+dest_files=["res://.godot/imported/Concrete 2.wav-86f40cc90e169500afcc5e1f73ef8764.sample"]
 
 [params]
 

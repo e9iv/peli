@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bh2hwups2bkfh"
-path="res://.godot/imported/hello_there.wav-c8996415d1d84c730d33a8d1d2eb43c2.sample"
+path="res://.godot/imported/hello_there.wav-4aa2d17c2db60881f9b41114d173a776.sample"
 
 [deps]
 
-source_file="res://assets/audio/hello_there.wav"
-dest_files=["res://.godot/imported/hello_there.wav-c8996415d1d84c730d33a8d1d2eb43c2.sample"]
+source_file="res://audio/hello_there.wav"
+dest_files=["res://.godot/imported/hello_there.wav-4aa2d17c2db60881f9b41114d173a776.sample"]
 
 [params]
 

@@ -28,17 +28,17 @@ extends Node2D
 
 var current_ammo_in_mag = full_mag  # Ammo in the current clip
 var can_shoot = true
-var is_reloading = false
 
 func _ready():
 	update_ammo_bar()
+	Global.is_reloading = false
 
 func shoot():
-	if is_reloading:
-		print("Can't shoot while reloading!")
-		return
+	if Global.is_reloading == true:
+		can_shoot = false
+		return "Can't shoot while reloading!"
 	if current_ammo_in_mag <= 0:
-		print("Out of ammo! Reload to shoot.")
+		reload()
 		return
 	if can_shoot:
 		can_shoot = false
@@ -66,25 +66,23 @@ func shoot():
 		can_shoot = true
 
 func reload():
-	if is_reloading:
-		print("Already reloading!")
-		return
+	if Global.is_reloading == true:
+		can_shoot = false
+		return "Already reloading"
 
 	if current_ammo_in_mag == full_mag:
-		print("Clip is already full!")
-		return
+		return "Clip is already full!"
 
 	if reserve_ammo <= 0:
-		print("No reserve ammo left!")
-		return
+		return "No reserve ammo left!"
 
-	is_reloading = true
+	Global.is_reloading = true
 	reload_sound.play()
 	anim.play("reload")
 	print("Reloading...")
 
 	# Simulate reload delay
-	await get_tree().create_timer(2.0).timeout # 2-second reload time
+	await get_tree().create_timer(2.6).timeout # 2-second reload time
 
 	var ammo_needed = full_mag - current_ammo_in_mag
 	var ammo_to_reload = min(ammo_needed, reserve_ammo)
@@ -92,8 +90,9 @@ func reload():
 	current_ammo_in_mag += ammo_to_reload
 	reserve_ammo -= ammo_to_reload
 
-	is_reloading = false
+	Global.is_reloading = false
 	print("Reload complete! Ammo in clip:", current_ammo_in_mag, "Reserve ammo:", reserve_ammo)
+	can_shoot = true
 
 func update_ammo_bar():
 	# Update the TextureProgressBar to reflect current ammo

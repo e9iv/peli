@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://idx48calcneu"
-path="res://.godot/imported/Retro Swooosh 07.wav-6cda28c16a8459a92d08f1cc024c6984.sample"
+path="res://.godot/imported/Retro Swooosh 07.wav-0803f5a44018df46cfbeeb2cb594d427.sample"
 
 [deps]
 
-source_file="res://assets/audio/Retro Swooosh 07.wav"
-dest_files=["res://.godot/imported/Retro Swooosh 07.wav-6cda28c16a8459a92d08f1cc024c6984.sample"]
+source_file="res://audio/Retro Swooosh 07.wav"
+dest_files=["res://.godot/imported/Retro Swooosh 07.wav-0803f5a44018df46cfbeeb2cb594d427.sample"]
 
 [params]
 

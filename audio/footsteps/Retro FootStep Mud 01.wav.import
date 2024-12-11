@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dfeft13ha5x2j"
-path="res://.godot/imported/Retro FootStep Mud 01.wav-c72a8f75e5ea336c52188b99604c83c8.sample"
+path="res://.godot/imported/Retro FootStep Mud 01.wav-2e0099cd0dc7db95c7ea6e3b68c30148.sample"
 
 [deps]
 
-source_file="res://assets/audio/footsteps/Retro FootStep Mud 01.wav"
-dest_files=["res://.godot/imported/Retro FootStep Mud 01.wav-c72a8f75e5ea336c52188b99604c83c8.sample"]
+source_file="res://audio/footsteps/Retro FootStep Mud 01.wav"
+dest_files=["res://.godot/imported/Retro FootStep Mud 01.wav-2e0099cd0dc7db95c7ea6e3b68c30148.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bgbnse23kctkm"
-path="res://.godot/imported/Retro FootStep Grass 01.wav-0646269e11d8aa4342dbcb9a720a6a00.sample"
+path="res://.godot/imported/Retro FootStep Grass 01.wav-354c2d9a9cb41e64042914503dbfe59e.sample"
 
 [deps]
 
-source_file="res://assets/audio/footsteps/Retro FootStep Grass 01.wav"
-dest_files=["res://.godot/imported/Retro FootStep Grass 01.wav-0646269e11d8aa4342dbcb9a720a6a00.sample"]
+source_file="res://audio/footsteps/Retro FootStep Grass 01.wav"
+dest_files=["res://.godot/imported/Retro FootStep Grass 01.wav-354c2d9a9cb41e64042914503dbfe59e.sample"]
 
 [params]
 

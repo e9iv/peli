@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://btvewq6q5iw6w"
-path="res://.godot/imported/Retro FootStep Gravel 01.wav-1f37ab1b549dcec035ed290c41456844.sample"
+path="res://.godot/imported/Retro FootStep Gravel 01.wav-e16b6aa854180b26ee730840b2f6c1d9.sample"
 
 [deps]
 
-source_file="res://assets/audio/footsteps/Retro FootStep Gravel 01.wav"
-dest_files=["res://.godot/imported/Retro FootStep Gravel 01.wav-1f37ab1b549dcec035ed290c41456844.sample"]
+source_file="res://audio/footsteps/Retro FootStep Gravel 01.wav"
+dest_files=["res://.godot/imported/Retro FootStep Gravel 01.wav-e16b6aa854180b26ee730840b2f6c1d9.sample"]
 
 [params]
 

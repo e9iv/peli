@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://common/main/main.gd" id="1_ifxnn"]
 [ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://common/player/player.tscn" id="1_pc3h1"]
 [ext_resource type="PackedScene" uid="uid://bjenuqw5iiynh" path="res://common/particles/dust.tscn" id="3_wkc5e"]
-[ext_resource type="AudioStream" uid="uid://b7h8c6ojbnngv" path="res://assets/audio/Outdoor_Ambiance.mp3" id="4_2at3o"]
+[ext_resource type="AudioStream" uid="uid://b7h8c6ojbnngv" path="res://audio/Outdoor_Ambiance.mp3" id="4_2at3o"]
 [ext_resource type="PackedScene" uid="uid://d3803gshr36jf" path="res://common/particles/wind.tscn" id="4_hm7t0"]
 [ext_resource type="PackedScene" uid="uid://4lo6gk2u2yf8" path="res://common/particles/snow.tscn" id="5_wg4kp"]
 [ext_resource type="PackedScene" uid="uid://dyol8vq3v3wt1" path="res://common/test/test.tscn" id="7_3ui18"]
