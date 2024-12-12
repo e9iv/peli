@@ -25,6 +25,9 @@ var current_health = health
 
 var footsteps_frames : Array = [1,5]
 
+func _ready() -> void:
+	update_health_bar()
+
 func _process(delta: float) -> void:
 	if Global.is_reloading == true:
 		return
@@ -43,7 +46,6 @@ func _process(delta: float) -> void:
 			gun.flip_v = false
 			for child in gun.get_children():
 				child.flip_v = false
-
 func _physics_process(delta: float) -> void:
 	# Normal movement
 	handle_movement(delta)
@@ -74,6 +76,10 @@ func handle_movement(delta: float) -> void:
 		velocity = velocity.move_toward(direction * speed, accel * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, decel * delta)
+
+func update_health_bar():
+	health_bar.max_value = health # Ensure the max_value is set
+	health_bar.value = current_health
 
 func handle_animation() -> void:
 	if velocity.length() > 0.0:

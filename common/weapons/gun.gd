@@ -61,6 +61,7 @@ func shoot():
 			anim.play("muzzleflash")
 			Global.camera.shake(duration, intensity)
 			current_ammo_in_mag -= 1
+			update_ammo_bar()
 			print(current_ammo_in_mag)
 		await get_tree().create_timer(1 / fire_rate).timeout
 		can_shoot = true
@@ -92,6 +93,8 @@ func reload():
 
 	Global.is_reloading = false
 	print("Reload complete! Ammo in clip:", current_ammo_in_mag, "Reserve ammo:", reserve_ammo)
+	update_ammo_bar()
+	
 	can_shoot = true
 
 func update_ammo_bar():

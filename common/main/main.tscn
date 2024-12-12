@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjd2pnd1x1jsx"]
+[gd_scene load_steps=16 format=3 uid="uid://bjd2pnd1x1jsx"]
 
 [ext_resource type="Script" path="res://common/main/main.gd" id="1_ifxnn"]
 [ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://common/player/player.tscn" id="1_pc3h1"]
+[ext_resource type="Shader" path="res://common/main/fog.gdshader" id="2_ihk6s"]
 [ext_resource type="PackedScene" uid="uid://bjenuqw5iiynh" path="res://common/particles/dust.tscn" id="3_wkc5e"]
 [ext_resource type="AudioStream" uid="uid://b7h8c6ojbnngv" path="res://audio/Outdoor_Ambiance.mp3" id="4_2at3o"]
 [ext_resource type="PackedScene" uid="uid://d3803gshr36jf" path="res://common/particles/wind.tscn" id="4_hm7t0"]
@@ -24,6 +25,22 @@ fill = 1
 fill_from = Vector2(0.509317, 0.531056)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="Gradient" id="Gradient_f66kp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_awem2"]
+frequency = 0.0297
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_10a2a"]
+seamless = true
+color_ramp = SubResource("Gradient_f66kp")
+noise = SubResource("FastNoiseLite_awem2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gknp"]
+shader = ExtResource("2_ihk6s")
+shader_parameter/density = 0.046
+shader_parameter/speed = Vector2(-0.005, 0.01)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_10a2a")
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_ifxnn")
 
@@ -41,15 +58,29 @@ environment = SubResource("Environment_8qa0w")
 [node name="PointLight2D" type="PointLight2D" parent="map"]
 texture = SubResource("GradientTexture2D_3pf2q")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="map"]
+layer = 10
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="map/ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="map/ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_2gknp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="player" parent="." instance=ExtResource("1_pc3h1")]
 position = Vector2(-384, -216)
 
 [node name="wind" parent="player" instance=ExtResource("4_hm7t0")]
-emitting = false
 
 [node name="dust" parent="player" instance=ExtResource("3_wkc5e")]
 position = Vector2(0, 0)
-emitting = false
 visibility_rect = Rect2(-501.733, -502.275, 1003.57, 1009.98)
 
 [node name="snow" parent="player" instance=ExtResource("5_wg4kp")]
@@ -64,5 +95,19 @@ autoplay = true
 parameters/looping = true
 
 [node name="test" parent="." instance=ExtResource("7_3ui18")]
-visible = false
 position = Vector2(-318, -216)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
