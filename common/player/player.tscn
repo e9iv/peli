@@ -212,7 +212,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../../../hud/TextureProgressBar:value")
+tracks/9/path = NodePath("../../../hud/ammo:value")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -340,7 +340,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../../hud/TextureProgressBar:value")
+tracks/2/path = NodePath("../../../hud/ammo:value")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -379,7 +379,7 @@ z_index = 1
 texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_wr1jw")
-health_bar = NodePath("hud/TextureProgressBar2")
+health_bar = NodePath("hud/health")
 sfx_footsteps = SubResource("AudioStreamRandomizer_tsha6")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -445,7 +445,7 @@ script = ExtResource("35_hq2op")
 bullet = ExtResource("36_m30g4")
 barrel_origin = NodePath("barrel")
 fire_rate = 4.0
-ammo_bar = NodePath("../../hud/TextureProgressBar")
+ammo_bar = NodePath("../../hud/ammo")
 anim = NodePath("barrel/AnimationPlayer")
 fire_sound = NodePath("../../sfx/gunshot")
 reload_sound = NodePath("../../sfx/reload")
@@ -492,12 +492,12 @@ libraries = {
 
 [node name="hud" type="CanvasLayer" parent="."]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="hud"]
+[node name="ammo" type="TextureProgressBar" parent="hud"]
 texture_filter = 1
 offset_left = 8.0
-offset_top = 6.0
+offset_top = 38.0
 offset_right = 58.0
-offset_bottom = 56.0
+offset_bottom = 88.0
 scale = Vector2(0.662082, 0.638296)
 max_value = 30.0
 fill_mode = 4
@@ -508,18 +508,18 @@ tint_progress = Color(0, 1, 1, 1)
 
 [node name="TextureRect" type="TextureRect" parent="hud"]
 offset_left = 21.0
-offset_top = 14.0
+offset_top = 46.0
 offset_right = 28.0
-offset_bottom = 30.0
+offset_bottom = 62.0
 texture = ExtResource("27_fqrgc")
 stretch_mode = 5
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="hud"]
+[node name="health" type="TextureProgressBar" parent="hud"]
 texture_filter = 1
 offset_left = 8.0
-offset_top = 37.0
+offset_top = 6.0
 offset_right = 58.0
-offset_bottom = 87.0
+offset_bottom = 56.0
 scale = Vector2(0.662082, 0.638296)
 max_value = 25.0
 fill_mode = 4
@@ -530,13 +530,13 @@ tint_progress = Color(1, 0, 0, 1)
 
 [node name="TextureRect2" type="TextureRect" parent="hud"]
 offset_left = 16.0
-offset_top = 43.0
+offset_top = 12.0
 offset_right = 33.0
-offset_bottom = 65.0
+offset_bottom = 34.0
 texture = ExtResource("28_hwbxt")
 stretch_mode = 5
 
-[node name="ColorRect" type="ColorRect" parent="hud"]
+[node name="crt" type="ColorRect" parent="hud"]
 z_index = 100
 material = SubResource("ShaderMaterial_xi0ap")
 anchors_preset = 15
