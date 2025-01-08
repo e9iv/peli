@@ -1,11 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=38 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://df8tqjp22kdb0" path="res://audio/footsteps/Retro FootStep 03.wav" id="2_06bbq"]
 [ext_resource type="Texture2D" uid="uid://cj1ab16w7xcau" path="res://assets/sprites/player/idle/idle_01.png" id="4_x6g3h"]
 [ext_resource type="Texture2D" uid="uid://ddwd4erq0f2un" path="res://assets/sprites/player/idle/idle_02.png" id="5_6p3kc"]
 [ext_resource type="Texture2D" uid="uid://d0carmw85dv3x" path="res://assets/sprites/player/idle/idle_04.png" id="6_awjh1"]
-[ext_resource type="Shader" path="res://common/main/crt.gdshader" id="15_kxcny"]
 [ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/player/run/basic_run_01.png" id="21_hdsps"]
 [ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/player/run/basic_run_02.png" id="22_cabqj"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/player/run/basic_run_03.png" id="23_7kai0"]
@@ -94,6 +93,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.529412, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u6yim"]
 gradient = SubResource("Gradient_4vvxu")
+width = 16
+height = 16
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.509174, 0.509174)
@@ -357,23 +358,6 @@ _data = {
 "reload": SubResource("Animation_sy5xl")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xi0ap"]
-shader = ExtResource("15_kxcny")
-shader_parameter/resolution = Vector2(320, 180)
-shader_parameter/scan_line_amount = 1.0
-shader_parameter/warp_amount = 0.1
-shader_parameter/noise_amount = 0.03
-shader_parameter/interference_amount = 0.2
-shader_parameter/grille_amount = 0.1
-shader_parameter/grille_size = 1.0
-shader_parameter/vignette_amount = 0.6
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/aberation_amount = 0.5
-shader_parameter/roll_line_amount = 0.3
-shader_parameter/roll_speed = 1.0
-shader_parameter/scan_line_strength = -8.0
-shader_parameter/pixel_strength = -2.0
-
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("health_bar") groups=["player"]]
 z_index = 1
 texture_filter = 1
@@ -472,7 +456,8 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 5
 texture_filter = 1
-scale = Vector2(0.240004, 0.199999)
+position = Vector2(-1, 0)
+scale = Vector2(0.807502, 0.672904)
 color = Color(1, 0.682353, 0, 1)
 energy = 16.0
 shadow_enabled = true
@@ -491,6 +476,7 @@ libraries = {
 }
 
 [node name="hud" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ammo" type="TextureProgressBar" parent="hud"]
 texture_filter = 1
@@ -535,15 +521,6 @@ offset_right = 33.0
 offset_bottom = 34.0
 texture = ExtResource("28_hwbxt")
 stretch_mode = 5
-
-[node name="crt" type="ColorRect" parent="hud"]
-z_index = 100
-material = SubResource("ShaderMaterial_xi0ap")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

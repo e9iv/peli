@@ -29,6 +29,7 @@ func _ready() -> void:
 	update_health_bar()
 
 func _process(delta: float) -> void:
+	
 	if Global.is_reloading == true:
 		return
 	else:
@@ -50,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	# Normal movement
 	handle_movement(delta)
 
+	
 	# Apply velocity and move
 	move_and_slide()
 

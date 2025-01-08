@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buiyo5tsg1q5a"
-path="res://.godot/imported/Overworld.png-82eb3f9574e554eb44ebc3e7d5e04f61.ctex"
+uid="uid://dhw5atevqx14k"
+path="res://.godot/imported/Minifantasy_ForgottenPlainsTiles.png-16135565257c6f963f5297a45d8ff53e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tilesets/Overworld.png"
-dest_files=["res://.godot/imported/Overworld.png-82eb3f9574e554eb44ebc3e7d5e04f61.ctex"]
+source_file="res://assets/tilesets/Minifantasy_ForgottenPlainsTiles.png"
+dest_files=["res://.godot/imported/Minifantasy_ForgottenPlainsTiles.png-16135565257c6f963f5297a45d8ff53e.ctex"]
 
 [params]
 
