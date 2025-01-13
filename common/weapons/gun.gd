@@ -79,7 +79,7 @@ func reload():
 
 	Global.is_reloading = true
 	reload_sound.play()
-	anim.play("reload")
+	#anim.play("reload")
 	print("Reloading...")
 
 	# Simulate reload delay

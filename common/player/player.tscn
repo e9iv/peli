@@ -1,14 +1,24 @@
-[gd_scene load_steps=38 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=49 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://df8tqjp22kdb0" path="res://audio/footsteps/Retro FootStep 03.wav" id="2_06bbq"]
 [ext_resource type="Texture2D" uid="uid://cj1ab16w7xcau" path="res://assets/sprites/player/idle/idle_01.png" id="4_x6g3h"]
 [ext_resource type="Texture2D" uid="uid://ddwd4erq0f2un" path="res://assets/sprites/player/idle/idle_02.png" id="5_6p3kc"]
+[ext_resource type="Texture2D" uid="uid://ddnksqxbj166y" path="res://assets/sprites/player/idle/bp_idle_01.png" id="6_6oxmh"]
 [ext_resource type="Texture2D" uid="uid://d0carmw85dv3x" path="res://assets/sprites/player/idle/idle_04.png" id="6_awjh1"]
+[ext_resource type="Texture2D" uid="uid://d0l85fsyhpfir" path="res://assets/sprites/player/idle/bp_idle_02.png" id="7_04ooj"]
+[ext_resource type="Texture2D" uid="uid://duxpts1wr2yjp" path="res://assets/sprites/player/idle/bp_idle_03.png" id="8_7lfuu"]
+[ext_resource type="Texture2D" uid="uid://bwhwsyfo4jmmn" path="res://assets/sprites/player/run/nohands_run_01.png" id="17_1nhvd"]
+[ext_resource type="Texture2D" uid="uid://bss5krhh2eago" path="res://assets/sprites/player/run/nohands_run_02.png" id="18_pwlkb"]
+[ext_resource type="Texture2D" uid="uid://3tm25gpyvali" path="res://assets/sprites/player/run/nohands_run_03.png" id="19_32ggx"]
+[ext_resource type="Texture2D" uid="uid://b8450mwywon4p" path="res://assets/sprites/player/run/nohands_run_04.png" id="20_gg6j5"]
+[ext_resource type="Texture2D" uid="uid://begom41mmiwo7" path="res://assets/sprites/player/run/nohands_run_05.png" id="21_6lb27"]
 [ext_resource type="Texture2D" uid="uid://76w46r48fm2f" path="res://assets/sprites/player/run/basic_run_01.png" id="21_hdsps"]
+[ext_resource type="Texture2D" uid="uid://b8oc8j4jjb56w" path="res://assets/sprites/player/run/nohands_run_06.png" id="22_56fo4"]
 [ext_resource type="Texture2D" uid="uid://86tnqm7cmlsu" path="res://assets/sprites/player/run/basic_run_02.png" id="22_cabqj"]
+[ext_resource type="Texture2D" uid="uid://cww5qxkisw4u7" path="res://assets/sprites/player/run/nohands_run_07.png" id="23_3gloi"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/player/run/basic_run_03.png" id="23_7kai0"]
-[ext_resource type="Texture2D" uid="uid://be0ku3ft7ec63" path="res://assets/sprites/weapons/ak1.png" id="23_36df3"]
+[ext_resource type="Texture2D" uid="uid://du6afsevtmuuu" path="res://assets/sprites/player/run/nohands_run_08.png" id="24_lfld4"]
 [ext_resource type="Texture2D" uid="uid://bj355vyo0gwyi" path="res://assets/sprites/weapons/ak_normal-map3.png" id="24_sxh74"]
 [ext_resource type="Texture2D" uid="uid://yrh180vdfo0b" path="res://assets/sprites/player/run/basic_run_04.png" id="24_xkjx2"]
 [ext_resource type="Texture2D" uid="uid://c21il6g8opgoh" path="res://assets/sprites/player/run/basic_run_05.png" id="25_q27be"]
@@ -19,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://svhdvaldpg5c" path="res://assets/ui/heart.png" id="28_hwbxt"]
 [ext_resource type="Texture2D" uid="uid://bjam5ftmrtuvk" path="res://assets/sprites/player/run/basic_run_08.png" id="28_ilfyv"]
 [ext_resource type="Script" path="res://common/player/camera.gd" id="30_bb0hi"]
+[ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/weapons/ak2.png" id="32_081mw"]
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://audio/Retro Swooosh 07.wav" id="35_id2wu"]
@@ -52,6 +63,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_6oxmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_04ooj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7lfuu")
+}],
+"loop": true,
+"name": &"idle2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_hdsps")
 }, {
 "duration": 1.0,
@@ -78,18 +103,47 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_1nhvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pwlkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_32ggx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gg6j5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_6lb27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_56fo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_3gloi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_lfld4")
+}],
+"loop": true,
+"name": &"run2",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhb4"]
 size = Vector2(8, 11)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cruh5"]
-diffuse_texture = ExtResource("23_36df3")
+diffuse_texture = ExtResource("32_081mw")
 normal_texture = ExtResource("24_sxh74")
 
 [sub_resource type="Gradient" id="Gradient_4vvxu"]
 offsets = PackedFloat32Array(0, 0.383117, 0.675325, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.529412, 0, 1, 0, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 0.803922, 1, 1, 0, 0.662745, 1, 0.529412, 0, 0.47451, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u6yim"]
 gradient = SubResource("Gradient_4vvxu")
@@ -370,7 +424,7 @@ sfx_footsteps = SubResource("AudioStreamRandomizer_tsha6")
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_pbkpr")
-animation = &"idle"
+animation = &"run2"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": true,
@@ -456,8 +510,7 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 5
 texture_filter = 1
-position = Vector2(-1, 0)
-scale = Vector2(0.807502, 0.672904)
+scale = Vector2(0.5, 0.5)
 color = Color(1, 0.682353, 0, 1)
 energy = 16.0
 shadow_enabled = true

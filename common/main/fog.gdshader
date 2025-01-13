@@ -1,6 +1,6 @@
 shader_type canvas_item;
 //render_mode unshaded; // optional
-
+render_mode blend_mix;
 // Noise texture
 uniform sampler2D noise_texture: repeat_enable, filter_nearest;
 // Fog density

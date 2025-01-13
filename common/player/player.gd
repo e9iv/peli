@@ -85,9 +85,9 @@ func update_health_bar():
 
 func handle_animation() -> void:
 	if velocity.length() > 0.0:
-		sprite.play("run")
+		sprite.play("run2")
 	else:
-		sprite.play("idle")
+		sprite.play("idle2")
 
 func handle_tilt(delta: float) -> void:
 	var target_tilt = tilt_amount * velocity.x / speed
@@ -100,6 +100,6 @@ func load_sfx(sfx_to_load):
 		sfx.stream = sfx_to_load
 
 func _on_sprite_frame_changed() -> void:
-	if sprite.animation == "idle": return
+	if sprite.animation == "idle2": return
 	load_sfx(sfx_footsteps)
 	if sprite.frame in footsteps_frames: sfx.play()
