@@ -47,3 +47,9 @@ func _on_timer_timeout() -> void:
 	shake_amount = 0
 	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_pressed("zoom"):
+		camera.zoom = Vector2(1, 1)
+	else:
+		camera.zoom = Vector2(5, 5)

@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cxm6ssuenhlet"]
+
+[resource]
+font_size = 20
+outline_size = 2
+outline_color = Color(0.634301, 0.634301, 0.634301, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)

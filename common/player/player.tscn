@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=52 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://df8tqjp22kdb0" path="res://audio/footsteps/Retro FootStep 03.wav" id="2_06bbq"]
@@ -37,7 +37,10 @@
 [ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_m30g4"]
 [ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://audio/weaponsfx/reload.wav" id="37_3ukmx"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/weapons/ak-outline.png" id="38_3slrs"]
+[ext_resource type="Script" path="res://common/player/fps.gd" id="39_1ldcl"]
+[ext_resource type="LabelSettings" uid="uid://cxm6ssuenhlet" path="res://common/player/debug-txt.tres" id="39_2h64e"]
 [ext_resource type="Texture2D" uid="uid://btjccop7g58uu" path="res://assets/sprites/muzzleflash/m_1.png" id="40_xyp07"]
+[ext_resource type="Script" path="res://common/player/coords.gd" id="41_36iik"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tsha6"]
 random_pitch = 1.47
@@ -529,9 +532,9 @@ libraries = {
 }
 
 [node name="hud" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ammo" type="TextureProgressBar" parent="hud"]
+visible = false
 texture_filter = 1
 offset_left = 8.0
 offset_top = 38.0
@@ -546,6 +549,7 @@ tint_under = Color(0.113725, 0.113725, 0.113725, 0.584314)
 tint_progress = Color(0, 1, 1, 1)
 
 [node name="TextureRect" type="TextureRect" parent="hud"]
+visible = false
 offset_left = 21.0
 offset_top = 46.0
 offset_right = 28.0
@@ -554,6 +558,7 @@ texture = ExtResource("27_fqrgc")
 stretch_mode = 5
 
 [node name="health" type="TextureProgressBar" parent="hud"]
+visible = false
 texture_filter = 1
 offset_left = 8.0
 offset_top = 6.0
@@ -568,12 +573,30 @@ tint_under = Color(0.113725, 0.113725, 0.113725, 0.584314)
 tint_progress = Color(1, 0, 0, 1)
 
 [node name="TextureRect2" type="TextureRect" parent="hud"]
+visible = false
 offset_left = 16.0
 offset_top = 12.0
 offset_right = 33.0
 offset_bottom = 34.0
 texture = ExtResource("28_hwbxt")
 stretch_mode = 5
+
+[node name="fps" type="Label" parent="hud"]
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 19.0
+text = "FPS:"
+label_settings = ExtResource("39_2h64e")
+script = ExtResource("39_1ldcl")
+
+[node name="coords" type="Label" parent="hud"]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 91.0
+offset_bottom = 52.0
+text = "Coords: "
+label_settings = ExtResource("39_2h64e")
+script = ExtResource("41_36iik")
 
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
