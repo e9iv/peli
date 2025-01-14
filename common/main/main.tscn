@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bjd2pnd1x1jsx"]
+[gd_scene load_steps=64 format=3 uid="uid://bjd2pnd1x1jsx"]
 
 [ext_resource type="Script" path="res://common/main/main.gd" id="1_ifxnn"]
 [ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://common/player/player.tscn" id="1_pc3h1"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tile_info.gd" id="15_q5r1u"]
 [ext_resource type="Script" path="res://addons/gaea/others/chunk_loader_2d.gd" id="18_qf768"]
 [ext_resource type="Texture2D" uid="uid://bi3tbcefl81pn" path="res://assets/ui/brush.png" id="23_7ov0x"]
+[ext_resource type="VideoStream" path="res://assets/misc/godot_intro_animation_hd_1_.ogv" id="24_o8fuy"]
 
 [sub_resource type="Environment" id="Environment_8qa0w"]
 background_mode = 3
@@ -447,9 +448,9 @@ tile_set = SubResource("TileSet_xj27l")
 
 [node name="inv" type="CanvasLayer" parent="."]
 layer = 11
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="inv"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
@@ -467,7 +468,6 @@ pivot_offset = Vector2(63.5, 36.5)
 texture = ExtResource("23_7ov0x")
 
 [node name="ColorRect" type="ColorRect" parent="inv"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -476,3 +476,20 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0, 0, 0.92549)
+
+[node name="intro" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="intro"]
+process_mode = 2
+layer = 20
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="intro/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+stream = ExtResource("24_o8fuy")

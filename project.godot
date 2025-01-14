@@ -12,9 +12,9 @@ config_version=5
 
 config/name="peli"
 config/version="0.0.1"
-run/main_scene="res://common/main/intro.tscn"
+run/main_scene="res://common/main/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/bg_color=Color(0.0839116, 0.0839117, 0.0839116, 1)
+boot_splash/bg_color=Color(0.0890734, 0.0890734, 0.0890734, 1)
 boot_splash/show_image=false
 
 [autoload]
