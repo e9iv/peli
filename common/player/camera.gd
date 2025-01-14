@@ -5,6 +5,9 @@ const MAX_DISTANCE : float = 15
 var target_distance : float = 0
 var center_pos = position
 
+var target_zoom: Vector2 = Vector2(4.5, 4.5)  # Default zoom
+var zoom_speed: float = 5.0  # Speed at which the zoom happens
+
 var shake_amount : float = 0
 var default_offset : Vector2 = offset
 var pos_x : int
@@ -17,10 +20,13 @@ var pos_y : int
 func _ready() -> void:
 	Global.camera = self
 	randomize()
+	zoom = target_zoom
 
 func _process(delta: float) -> void:
 	var direction = center_pos.direction_to(get_local_mouse_position())
 	var target_pos = center_pos + direction * target_distance
+	
+	zoom = zoom.lerp(target_zoom, zoom_speed * delta)
 	
 	if InputEventMouseMotion:
 		target_distance = center_pos.distance_to(get_local_mouse_position()) / 2
@@ -50,6 +56,6 @@ func _on_timer_timeout() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("zoom"):
-		camera.zoom = Vector2(1, 1)
+		target_zoom = Vector2(1.5, 1.5)  # Set target zoom to 1.5x
 	else:
-		camera.zoom = Vector2(5, 5)
+		target_zoom = Vector2(4.5, 4.5)  # Set target zoom to 4.5x

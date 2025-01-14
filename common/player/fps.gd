@@ -6,7 +6,7 @@ const MAX_FPS = 60
 func _process(delta):
 	# Get the current FPS
 	var fps = Engine.get_frames_per_second()
-	text = "FPS: %d" % fps
+	text = "fps: %d" % fps
 
 	# Calculate the percentage of performance
 	var percentage = clamp((fps - MIN_FPS) / float(MAX_FPS - MIN_FPS) * 100.0, 0, 100)

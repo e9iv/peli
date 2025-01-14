@@ -51,7 +51,6 @@ func _physics_process(delta: float) -> void:
 	# Normal movement
 	handle_movement(delta)
 
-	
 	# Apply velocity and move
 	move_and_slide()
 

@@ -7,7 +7,7 @@ func _process(delta):
 	# Update the coordinates dynamically (replace with your logic)
 
 	# Format the text to show coordinates
-	text = "Coords: (%.2f, %.2f)" % [player.position.x, player.position.y]
+	text = "xy: (%.2f, %.2f)" % [player.position.x, player.position.y]
 
 	# Change color based on coordinate values
 	if player.position.x >= 0 and player.position.y >= 0:
