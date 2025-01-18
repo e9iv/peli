@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu8o6n4tqee0"]
+
+[ext_resource type="Texture2D" uid="uid://nnkmea6sjrt7" path="res://assets/sprites/bullets/dust.png" id="1_pbusv"]
+
+[sub_resource type="Gradient" id="Gradient_1bgt8"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+z_index = 1
+position = Vector2(0, 3)
+amount = 4
+speed_scale = 2.5
+explosiveness = 0.2
+randomness = 0.4
+texture = ExtResource("1_pbusv")
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 5.0
+angle_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_1bgt8")

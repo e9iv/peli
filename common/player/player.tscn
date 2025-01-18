@@ -1,6 +1,7 @@
-[gd_scene load_steps=52 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=62 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
+[ext_resource type="AudioStream" uid="uid://df8tqjp22kdb0" path="res://audio/footsteps/Retro FootStep 03.wav" id="2_d0rry"]
 [ext_resource type="Texture2D" uid="uid://cj1ab16w7xcau" path="res://assets/sprites/player/idle/idle_01.png" id="4_x6g3h"]
 [ext_resource type="Texture2D" uid="uid://ddwd4erq0f2un" path="res://assets/sprites/player/idle/idle_02.png" id="5_6p3kc"]
 [ext_resource type="Texture2D" uid="uid://ddnksqxbj166y" path="res://assets/sprites/player/idle/bp_idle_01.png" id="6_6oxmh"]
@@ -18,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://cww5qxkisw4u7" path="res://assets/sprites/player/run/nohands_run_07.png" id="23_3gloi"]
 [ext_resource type="Texture2D" uid="uid://chh7pps8ws7ns" path="res://assets/sprites/player/run/basic_run_03.png" id="23_7kai0"]
 [ext_resource type="Texture2D" uid="uid://du6afsevtmuuu" path="res://assets/sprites/player/run/nohands_run_08.png" id="24_lfld4"]
-[ext_resource type="Texture2D" uid="uid://bj355vyo0gwyi" path="res://assets/sprites/weapons/ak_normal-map3.png" id="24_sxh74"]
 [ext_resource type="Texture2D" uid="uid://yrh180vdfo0b" path="res://assets/sprites/player/run/basic_run_04.png" id="24_xkjx2"]
 [ext_resource type="Texture2D" uid="uid://c21il6g8opgoh" path="res://assets/sprites/player/run/basic_run_05.png" id="25_q27be"]
 [ext_resource type="Texture2D" uid="uid://dhpq1qvbq26oc" path="res://assets/sprites/player/run/basic_run_06.png" id="26_xakhe"]
@@ -27,20 +27,33 @@
 [ext_resource type="Texture2D" uid="uid://svhdvaldpg5c" path="res://assets/ui/heart.png" id="28_hwbxt"]
 [ext_resource type="Texture2D" uid="uid://bjam5ftmrtuvk" path="res://assets/sprites/player/run/basic_run_08.png" id="28_ilfyv"]
 [ext_resource type="Script" path="res://common/player/camera.gd" id="30_bb0hi"]
-[ext_resource type="Texture2D" uid="uid://dy7l4skaqhygf" path="res://assets/sprites/weapons/ak2.png" id="32_081mw"]
+[ext_resource type="Shader" path="res://common/player/glint.gdshader" id="32_ps5wd"]
+[ext_resource type="Texture2D" uid="uid://hhtgrajh30xh" path="res://assets/sprites/weapons/ak3.png" id="33_3hut8"]
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://audio/Retro Swooosh 07.wav" id="35_id2wu"]
+[ext_resource type="Texture2D" uid="uid://cwd4ypkp4jjin" path="res://assets/misc/star.png" id="36_50umo"]
 [ext_resource type="AudioStream" uid="uid://jity588pqfxv" path="res://audio/weaponsfx/ineedmorebullets.wav" id="36_a4yov"]
 [ext_resource type="PackedScene" uid="uid://b51403x3bh1f8" path="res://common/weapons/bullets/fire_bullet.tscn" id="36_m30g4"]
 [ext_resource type="AudioStream" uid="uid://br74idmvhbfwf" path="res://audio/weaponsfx/reload.wav" id="37_3ukmx"]
+[ext_resource type="Shader" path="res://common/shaders/glow.gdshader" id="37_uvw4o"]
 [ext_resource type="Texture2D" uid="uid://c0uhs5fqvgcef" path="res://assets/sprites/weapons/ak-outline.png" id="38_3slrs"]
 [ext_resource type="Script" path="res://common/player/fps.gd" id="39_1ldcl"]
 [ext_resource type="LabelSettings" uid="uid://cxm6ssuenhlet" path="res://common/player/debug-txt.tres" id="39_2h64e"]
 [ext_resource type="Texture2D" uid="uid://btjccop7g58uu" path="res://assets/sprites/muzzleflash/m_1.png" id="40_xyp07"]
 [ext_resource type="Script" path="res://common/player/coords.gd" id="41_36iik"]
+[ext_resource type="Script" path="res://common/player/money.gd" id="41_m5rns"]
 [ext_resource type="Texture2D" uid="uid://bi3tbcefl81pn" path="res://assets/ui/brush.png" id="42_v5xoa"]
 [ext_resource type="Shader" path="res://common/player/vignette.gdshader" id="42_vatc2"]
+[ext_resource type="PackedScene" uid="uid://cu8o6n4tqee0" path="res://common/player/dust.tscn" id="47_cauev"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_51h4b"]
+random_pitch = 1.35
+random_volume_offset_db = 2.35
+streams_count = 2
+stream_0/stream = ExtResource("2_d0rry")
+stream_1/stream = ExtResource("2_d0rry")
+stream_1/weight = 0.5
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pbkpr"]
 animations = [{
@@ -134,9 +147,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhb4"]
 size = Vector2(8, 11)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_cruh5"]
-diffuse_texture = ExtResource("32_081mw")
-normal_texture = ExtResource("24_sxh74")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gbdg"]
+shader = ExtResource("32_ps5wd")
+shader_parameter/size_effect = 0.25
+shader_parameter/speed = 1.0
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = true
+shader_parameter/pause_duration = 0.5
 
 [sub_resource type="Gradient" id="Gradient_4vvxu"]
 offsets = PackedFloat32Array(0, 0.383117, 0.675325, 1)
@@ -146,7 +164,6 @@ colors = PackedColorArray(1, 1, 1, 0.803922, 1, 1, 0, 0.662745, 1, 0.529412, 0, 
 gradient = SubResource("Gradient_4vvxu")
 width = 16
 height = 16
-use_hdr = true
 fill = 1
 fill_from = Vector2(0.509174, 0.509174)
 fill_to = Vector2(0.869565, 0.829193)
@@ -409,6 +426,22 @@ _data = {
 "reload": SubResource("Animation_sy5xl")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pi0s"]
+shader = ExtResource("37_uvw4o")
+
+[sub_resource type="Curve" id="Curve_cl8mc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vs2ed"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n17xe"]
+font_size = 24
+font_color = Color(0.700094, 1.70864e-06, 8.66354e-07, 1)
+outline_size = 4
+outline_color = Color(0.376949, 3.7903e-07, 1.20327e-07, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g7o38"]
 shader = ExtResource("42_vatc2")
 shader_parameter/r_displacement = Vector2(1, 0)
@@ -418,13 +451,15 @@ shader_parameter/height = 0.7
 shader_parameter/width = 0.5
 shader_parameter/fade = 0.7
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("health_bar") groups=["player"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("health_bar", "dust_particles") groups=["player"]]
 z_index = 1
 texture_filter = 1
 collision_layer = 2
 collision_mask = 513
 script = ExtResource("1_wr1jw")
 health_bar = NodePath("hud/health")
+sfx_footsteps = SubResource("AudioStreamRandomizer_51h4b")
+dust_particles = NodePath("dust")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -499,8 +534,9 @@ duration = 0.3
 intensity = 0.2
 
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
+material = SubResource("ShaderMaterial_3gbdg")
 position = Vector2(-3, 0)
-texture = SubResource("CanvasTexture_cruh5")
+texture = ExtResource("33_3hut8")
 offset = Vector2(4, 1)
 
 [node name="outline" type="Sprite2D" parent="weapons/ak/gun"]
@@ -516,10 +552,9 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 5
 texture_filter = 1
+position = Vector2(1.19209e-07, 0)
 scale = Vector2(0.5, 0.5)
 color = Color(1, 0.682353, 0, 1)
-energy = 16.0
-shadow_enabled = true
 texture = SubResource("GradientTexture2D_u6yim")
 
 [node name="Sprite2D" type="Sprite2D" parent="weapons/ak/barrel"]
@@ -534,8 +569,25 @@ libraries = {
 "": SubResource("AnimationLibrary_17uxp")
 }
 
+[node name="glint" type="CPUParticles2D" parent="weapons/ak"]
+material = SubResource("ShaderMaterial_3pi0s")
+lifetime = 2.5
+texture = ExtResource("36_50umo")
+emission_shape = 3
+emission_rect_extents = Vector2(4, 2)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.05
+scale_amount_max = 0.25
+scale_amount_curve = SubResource("Curve_cl8mc")
+color_ramp = SubResource("Gradient_vs2ed")
+
 [node name="hud" type="CanvasLayer" parent="."]
 layer = 11
+visible = false
 
 [node name="ammo" type="TextureProgressBar" parent="hud"]
 z_index = 1
@@ -545,11 +597,13 @@ offset_top = 618.0
 offset_right = 47.0
 offset_bottom = 634.0
 scale = Vector2(0.8, 0.8)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 max_value = 30.0
 fill_mode = 3
 texture_under = ExtResource("27_fqrgc")
 texture_progress = ExtResource("27_fqrgc")
-tint_under = Color(0.113725, 0.113725, 0.113725, 0.607843)
+tint_under = Color(0.152957, 0.152957, 0.152957, 0.607843)
 
 [node name="health" type="TextureProgressBar" parent="hud"]
 z_index = 1
@@ -559,11 +613,14 @@ offset_top = 618.0
 offset_right = 31.0
 offset_bottom = 627.0
 scale = Vector2(1.4, 1.4)
-max_value = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 15.0
+value = 7.0
 fill_mode = 3
 texture_under = ExtResource("28_hwbxt")
 texture_progress = ExtResource("28_hwbxt")
-tint_under = Color(0.0784314, 0.0784314, 0.0784314, 0.607843)
+tint_under = Color(0.156863, 0.0784314, 0.0784314, 0.607843)
 tint_progress = Color(1, 0, 0, 1)
 
 [node name="fps" type="Label" parent="hud"]
@@ -571,6 +628,8 @@ z_index = 1
 offset_left = 8.0
 offset_right = 48.0
 offset_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "fps:"
 label_settings = ExtResource("39_2h64e")
 script = ExtResource("39_1ldcl")
@@ -581,9 +640,30 @@ offset_left = 8.0
 offset_top = 16.0
 offset_right = 91.0
 offset_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "xy:"
 label_settings = ExtResource("39_2h64e")
 script = ExtResource("41_36iik")
+
+[node name="money" type="Label" parent="hud"]
+z_index = 1
+offset_left = 19.0
+offset_top = 593.0
+offset_right = 25.0
+offset_bottom = 605.0
+text = "0€"
+label_settings = ExtResource("39_2h64e")
+script = ExtResource("41_m5rns")
+
+[node name="round" type="Label" parent="hud"]
+z_index = 1
+offset_left = 1114.0
+offset_top = 613.0
+offset_right = 1154.0
+offset_bottom = 642.0
+text = "1"
+label_settings = SubResource("LabelSettings_n17xe")
 
 [node name="ChromaticAbberationVignette" type="ColorRect" parent="hud"]
 material = SubResource("ShaderMaterial_g7o38")
@@ -592,6 +672,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="hud"]
 modulate = Color(0, 0, 0, 1)
@@ -600,6 +682,37 @@ offset_top = 611.0
 offset_right = 136.0
 offset_bottom = 684.0
 scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("42_v5xoa")
+
+[node name="TextureRect4" type="TextureRect" parent="hud"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -37.0
+offset_right = 69.0
+offset_bottom = 36.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("42_v5xoa")
+
+[node name="TextureRect3" type="TextureRect" parent="hud"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 9.0
+offset_top = 592.0
+offset_right = 137.0
+offset_bottom = 665.0
+scale = Vector2(0.4, 0.25)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource("42_v5xoa")
 
 [node name="TextureRect2" type="TextureRect" parent="hud"]
@@ -609,8 +722,20 @@ offset_top = -6.0
 offset_right = 73.0
 offset_bottom = 67.0
 scale = Vector2(2.4, 0.7)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource("42_v5xoa")
 flip_h = true
 
+[node name="ColorRect" type="ColorRect" parent="hud"]
+z_index = -1
+
+[node name="ParticleTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="dust" parent="." instance=ExtResource("47_cauev")]
+emitting = false
+
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_frame_changed"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="ParticleTimer" to="." method="_on_particle_timer_timeout"]

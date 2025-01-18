@@ -10,6 +10,6 @@ func _ready() -> void:
 	video.finished.connect(self._on_video_finished)
 	tween.tween_property(self, "modulate", Color.WHITE, 2.5)
 	tween.tween_property(self, "modulate:a", 1, 5)
-	
+
 func _on_video_finished():
 	get_tree().paused = false

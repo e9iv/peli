@@ -55,7 +55,9 @@ func _on_timer_timeout() -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("zoom"):
-		target_zoom = Vector2(1.5, 1.5)  # Set target zoom to 1.5x
+	if Input.is_action_just_pressed("zoomin"):
+		target_zoom = Vector2(1.5, 1.5)  # Set target zoom to 1.5xwa
+	elif Input.is_action_just_pressed("zoomout"):
+		target_zoom = Vector2(10.0, 10.0)
 	else:
 		target_zoom = Vector2(4.5, 4.5)  # Set target zoom to 4.5x

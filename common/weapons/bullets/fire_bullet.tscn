@@ -19,7 +19,6 @@ point_count = 2
 colors = PackedColorArray(1, 0.407246, 0.338652, 1, 0.850783, 0.850783, 0, 1)
 
 [node name="FireBullet" type="CharacterBody2D"]
-collision_layer = 0
 script = ExtResource("1_6mpi0")
 lifespan = 0.5
 
@@ -27,6 +26,7 @@ lifespan = 0.5
 shape = SubResource("CircleShape2D_ugbqm")
 
 [node name="PlayerHitbox" parent="." instance=ExtResource("2_h0ncx")]
+collision_mask = 32
 damage = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
