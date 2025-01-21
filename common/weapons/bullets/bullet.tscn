@@ -1,6 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqyk8qqsadwwd"]
+[gd_scene load_steps=8 format=3 uid="uid://cqyk8qqsadwwd"]
 
 [ext_resource type="Script" path="res://common/weapons/bullets/bullet.gd" id="1_rc1pi"]
+[ext_resource type="PackedScene" uid="uid://dau41diwupag8" path="res://common/hitbox/PlayerHitbox.tscn" id="2_yyk4a"]
+[ext_resource type="Texture2D" uid="uid://c4fub5y6nse2j" path="res://assets/sprites/bullets/bullet.png" id="3_y52v6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8oqec"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_acir0"]
+radius = 2.0
+
+[sub_resource type="Curve" id="Curve_fb02s"]
+max_value = 4.0
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_v434v"]
+colors = PackedColorArray(1, 1, 1, 0.490196, 1, 1, 1, 0.0376712)
 
 [node name="bullet" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_rc1pi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8oqec")
+
+[node name="PlayerHitbox" parent="." instance=ExtResource("2_yyk4a")]
+collision_mask = 32
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("CircleShape2D_acir0")
+
+[node name="sprite_groiup" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="sprite_groiup"]
+scale = Vector2(0.1, 0.11)
+texture = ExtResource("3_y52v6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="sprite_groiup"]
+position = Vector2(-4.76837e-07, 2.38419e-07)
+scale = Vector2(0.1, 0.1)
+amount = 100
+preprocess = 0.5
+local_coords = true
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(-980, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_fb02s")
+color_ramp = SubResource("Gradient_v434v")
