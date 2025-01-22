@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bjd2pnd1x1jsx"]
+[gd_scene load_steps=37 format=4 uid="uid://bjd2pnd1x1jsx"]
 
 [ext_resource type="Script" path="res://common/main/main.gd" id="1_ifxnn"]
 [ext_resource type="PackedScene" uid="uid://583hn6mui13j" path="res://common/player/player.tscn" id="1_pc3h1"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://d3803gshr36jf" path="res://common/particles/wind.tscn" id="4_hm7t0"]
 [ext_resource type="PackedScene" uid="uid://4lo6gk2u2yf8" path="res://common/particles/snow.tscn" id="5_wg4kp"]
 [ext_resource type="Shader" path="res://common/shaders/glow.gdshader" id="8_xhcnr"]
+[ext_resource type="PackedScene" uid="uid://br2tjbarm4cul" path="res://common/enemy/enemy.tscn" id="12_vuvtx"]
+[ext_resource type="Theme" uid="uid://dvhkt1nvo6ik4" path="res://common/theme.tres" id="13_wqicv"]
 [ext_resource type="VideoStream" path="res://assets/misc/godot_intro_animation_hd_1_.ogv" id="24_o8fuy"]
 
 [sub_resource type="Environment" id="Environment_8qa0w"]
@@ -314,6 +316,7 @@ fill_to = Vector2(0.777778, 0.116809)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ifxnn")
+zombie = ExtResource("12_vuvtx")
 
 [node name="map" type="Node2D" parent="."]
 position = Vector2(-384, -216)
@@ -443,6 +446,48 @@ offset_bottom = 620.0
 color = Color(0.157753, 0.157753, 0.157753, 1)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.191241, 0.191241, 0.19124, 1)
+visible = false
+color = Color(0.223103, 0.223103, 0.223102, 1)
+
+[node name="pause" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="pausemenu" type="VBoxContainer" parent="pause"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -23.0
+offset_right = 22.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="pause/pausemenu"]
+layout_mode = 2
+theme = ExtResource("13_wqicv")
+text = "Resume"
+
+[node name="Button2" type="Button" parent="pause/pausemenu"]
+layout_mode = 2
+theme = ExtResource("13_wqicv")
+text = "Quit"
+
+[node name="spawners" type="Node2D" parent="."]
+
+[node name="spawner1" type="Marker2D" parent="spawners"]
+position = Vector2(-104, 50)
+
+[node name="spawner2" type="Marker2D" parent="spawners"]
+position = Vector2(32, -60)
+
+[node name="spawner3" type="Marker2D" parent="spawners"]
+position = Vector2(-103, -88)
+
+[node name="spawner4" type="Marker2D" parent="spawners"]
+position = Vector2(-104, -26)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

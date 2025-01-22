@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://583hn6mui13j"]
+[gd_scene load_steps=66 format=3 uid="uid://583hn6mui13j"]
 
 [ext_resource type="Script" path="res://common/player/player.gd" id="1_wr1jw"]
 [ext_resource type="AudioStream" uid="uid://df8tqjp22kdb0" path="res://audio/footsteps/Retro FootStep 03.wav" id="2_d0rry"]
@@ -29,7 +29,7 @@
 [ext_resource type="Script" path="res://common/player/camera.gd" id="30_bb0hi"]
 [ext_resource type="PackedScene" uid="uid://cqyk8qqsadwwd" path="res://common/weapons/bullets/bullet.tscn" id="31_5yxil"]
 [ext_resource type="Shader" path="res://common/player/glint.gdshader" id="32_ps5wd"]
-[ext_resource type="Texture2D" uid="uid://lhuavuou8lfd" path="res://assets/sprites/weapons/ak4.png" id="33_uf2t0"]
+[ext_resource type="Texture2D" uid="uid://hhtgrajh30xh" path="res://assets/sprites/weapons/ak3.png" id="33_el7yc"]
 [ext_resource type="AudioStream" uid="uid://bfdvp2igu1hca" path="res://audio/weaponsfx/cg1.wav" id="34_myetu"]
 [ext_resource type="Script" path="res://common/weapons/ak.gd" id="35_hq2op"]
 [ext_resource type="AudioStream" uid="uid://idx48calcneu" path="res://audio/Retro Swooosh 07.wav" id="35_id2wu"]
@@ -45,6 +45,7 @@
 [ext_resource type="Script" path="res://common/player/money.gd" id="41_m5rns"]
 [ext_resource type="Texture2D" uid="uid://bi3tbcefl81pn" path="res://assets/ui/brush.png" id="42_v5xoa"]
 [ext_resource type="Shader" path="res://common/player/vignette.gdshader" id="42_vatc2"]
+[ext_resource type="Script" path="res://common/player/round.gd" id="45_qra26"]
 [ext_resource type="PackedScene" uid="uid://cu8o6n4tqee0" path="res://common/player/dust.tscn" id="47_cauev"]
 [ext_resource type="Texture2D" uid="uid://b2hjra7njyjmg" path="res://assets/misc/light.png" id="48_81d3d"]
 
@@ -465,6 +466,7 @@ z_index = 1
 texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_wr1jw")
+tilt_amount = 0.2
 health_bar = NodePath("hud/health")
 sfx_footsteps = SubResource("AudioStreamRandomizer_51h4b")
 dust_particles = NodePath("dust")
@@ -543,7 +545,7 @@ intensity = 0.2
 [node name="gun" type="Sprite2D" parent="weapons/ak"]
 material = SubResource("ShaderMaterial_v3srj")
 position = Vector2(-3, 0)
-texture = ExtResource("33_uf2t0")
+texture = ExtResource("33_el7yc")
 offset = Vector2(4, 1)
 
 [node name="outline" type="Sprite2D" parent="weapons/ak/gun"]
@@ -601,7 +603,6 @@ color_ramp = SubResource("Gradient_vs2ed")
 
 [node name="hud" type="CanvasLayer" parent="."]
 layer = 11
-visible = false
 
 [node name="ammo" type="TextureProgressBar" parent="hud"]
 z_index = 1
@@ -678,6 +679,7 @@ offset_right = 1154.0
 offset_bottom = 642.0
 text = "1"
 label_settings = SubResource("LabelSettings_n17xe")
+script = ExtResource("45_qra26")
 
 [node name="ChromaticAbberationVignette" type="ColorRect" parent="hud"]
 material = SubResource("ShaderMaterial_g7o38")
